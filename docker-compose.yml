@@ -39,7 +39,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "db12345"
       MYSQL_ROOT_HOST: "%"
-      MYSQL_DATABASE: "qadb"
+      MYSQL_DATABASE: "db"
       MYSQL_USER: "dbuser"
       MYSQL_PASSWORD: "db12345"
     volumes:
