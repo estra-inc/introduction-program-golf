@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('reserves', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->ulid('golf_course_id');
-            $table->date('start_at');
+            $table->date('start_date');
             $table->string('name');
             $table->string('email');
             $table->unsignedInteger('person_count');

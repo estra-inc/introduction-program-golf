@@ -334,3 +334,40 @@ paths:
                     type: string
                     description: 評価
                     example:
+
+  /api/reserves:
+    post:
+      tags:
+        - reserves
+      summary: 予約
+      description: 予約
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                golf_course_id:
+                  type: integer
+                  description: ゴルフ場ID
+                  example: 30014
+                start_date:
+                  type: string
+                  description: 開始日
+                  example: 2025-01-01
+                name:
+                  type: string
+                  description: 名前
+                  example: 山田太郎
+                email:
+                  type: string
+                  description: メールアドレス
+                  example: test@example.com
+                person_count:
+                  type: integer
+                  description: 人数
+                  example: 2
+      responses:
+        "200":
+          description: 予約
