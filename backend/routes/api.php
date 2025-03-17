@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\GolfCourseController;
+use App\Http\Controllers\ReserveController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/test', function () {
-    return 'Hello World';
-});
+// ゴルフ場
+Route::apiResource('golf/courses', GolfCourseController::class)->only(['index', 'show']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// 予約
+Route::post('reserves', [ReserveController::class, 'store']);
+
+// 予約
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('reserves', ReserveController::class)->only(['index', 'show']);
 });
