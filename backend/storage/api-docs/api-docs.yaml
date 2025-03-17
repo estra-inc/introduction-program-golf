@@ -1,53 +1,141 @@
 openapi: 3.0.0
 info:
-  title: サンプル
-  description: サンプル
+  title: 基礎研修API
+  description: 基礎研修API
   version: 1.0.0
 paths:
-  # ユーザー登録
-  /register:
-    post:
+  /api/golf-courses:
+    get:
       tags:
-        - register
-      summary: ユーザー登録時のAPIドキュメント
-      description: ユーザー登録時のAPIドキュメント
-      parameters: []
-      requestBody:
-        description: ユーザー登録時のリクエストボディ
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  description: ユーザー名（255文字まで）
-                  type: string
-                  example: 佐藤太郎
-                email:
-                  description: メールアドレス（一意、255文字まで）
-                  type: string
-                  example: hogehoge@gmail.com
-                password:
-                  description: パスワード（最小8文字）
-                  type: string
-                  example: password
-              required:
-                - name
-                - email
-                - password
+        - golf-courses
+      summary: ゴルフ場一覧
+      description: ゴルフ場一覧
+      parameters:
+        - name: page
+          in: query
+          description: ページ番号
+          required: true
+          schema:
+            type: integer
+            default: 1
+        - name: keyword
+          in: query
+          description: キーワード
+          required: false
+          schema:
+            type: string
+        - name: areaCode
+          in: query
+          description: エリアコード
+          required: false
+          schema:
+            type: integer
+        - name: latitude
+          in: query
+          description: 緯度
+          required: false
+          schema:
+            type: number
+        - name: longitude
+          in: query
+          description: 経度
+          required: false
+          schema:
+            type: number
       responses:
         "200":
-          description: ユーザー登録成功時
+          description: ゴルフ場一覧
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  status:
-                    description: HTTPステータス
-                    type: string
-                    example: 200
-                  successMessage:
-                    description: ユーザー登録成功時のメッセージ
-                    type: string
-                    example: ユーザー登録に成功しました。
+                  count:
+                    type: integer
+                    description: ゴルフ場数
+                    example: 13
+                  page:
+                    type: integer
+                    description: ページ番号
+                    example: 1
+                  first:
+                    type: integer
+                    description: 最初のページ番号
+                    example: 1
+                  last:
+                    type: integer
+                    description: 最後のページ番号
+                    example: 13
+                  hits:
+                    type: integer
+                    description: ヒット数
+                    example: 13
+                  carrier:
+                    type: integer
+                    description: キャリア
+                    example: 0
+                  pageCount:
+                    type: integer
+                    description: ページ数
+                    example: 1
+                  Items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        Item:
+                          type: object
+                          properties:
+                            golfCourseId:
+                              type: integer
+                              description: ゴルフ場ID
+                              example: 110047
+                            golfCourseName:
+                              type: string
+                              description: ゴルフ場名
+                              example: 秩父国際カントリークラブ
+                            golfCourseAbbr:
+                              type: string
+                              description: ゴルフ場略称
+                              example: 秩父国際CC
+                            golfCourseNameKana:
+                              type: string
+                              description: ゴルフ場名カナ
+                              example: ちちぶこくさいかんとりーくらぶ
+                            golfCourseCaption:
+                              type: string
+                              description: ゴルフ場概要
+                            address:
+                              type: string
+                              description: 住所
+                              example: 埼玉県秩父郡皆野町三沢4633-1
+                            latitude:
+                              type: number
+                              description: 緯度
+                              example: 36.0608469
+                            longitude:
+                              type: number
+                              description: 経度
+                              example: 139.1344869
+                            highway:
+                              type: string
+                              description: 高速道路
+                            golfCourseDetailUrl:
+                              type: string
+                              description: ゴルフ場詳細URL
+                            reserveCalUrl:
+                              type: string
+                              description: 予約カレンダーURL
+                              example: https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/110047?rafcid=wsc_g_cs_1018280517649528141
+                            ratingUrl:
+                              type: string
+                              description: 評価URL
+                              example: https://booking.gora.golf.rakuten.co.jp/voice/detail/c_id/110047?rafcid=wsc_g_cs_1018280517649528141
+                            golfCourseImageUrl:
+                              type: string
+                              description: ゴルフ場画像URL
+                              example: https://gora.golf.rakuten.co.jp/img/golf/110047/photo1.jpg
+                            evaluation:
+                              type: number
+                              description: 評価
+                              example: 3.6

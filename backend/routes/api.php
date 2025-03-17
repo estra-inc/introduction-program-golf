@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // ゴルフ場
-Route::apiResource('golf/courses', GolfCourseController::class)->only(['index', 'show']);
+Route::apiResource('golf-courses', GolfCourseController::class)->only(['index', 'show']);
 
 // 予約
 Route::post('reserves', [ReserveController::class, 'store']);
