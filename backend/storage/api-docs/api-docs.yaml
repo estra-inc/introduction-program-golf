@@ -83,59 +83,254 @@ paths:
                     items:
                       type: object
                       properties:
-                        Item:
-                          type: object
-                          properties:
-                            golfCourseId:
-                              type: integer
-                              description: ゴルフ場ID
-                              example: 110047
-                            golfCourseName:
-                              type: string
-                              description: ゴルフ場名
-                              example: 秩父国際カントリークラブ
-                            golfCourseAbbr:
-                              type: string
-                              description: ゴルフ場略称
-                              example: 秩父国際CC
-                            golfCourseNameKana:
-                              type: string
-                              description: ゴルフ場名カナ
-                              example: ちちぶこくさいかんとりーくらぶ
-                            golfCourseCaption:
-                              type: string
-                              description: ゴルフ場概要
-                            address:
-                              type: string
-                              description: 住所
-                              example: 埼玉県秩父郡皆野町三沢4633-1
-                            latitude:
-                              type: number
-                              description: 緯度
-                              example: 36.0608469
-                            longitude:
-                              type: number
-                              description: 経度
-                              example: 139.1344869
-                            highway:
-                              type: string
-                              description: 高速道路
-                            golfCourseDetailUrl:
-                              type: string
-                              description: ゴルフ場詳細URL
-                            reserveCalUrl:
-                              type: string
-                              description: 予約カレンダーURL
-                              example: https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/110047?rafcid=wsc_g_cs_1018280517649528141
-                            ratingUrl:
-                              type: string
-                              description: 評価URL
-                              example: https://booking.gora.golf.rakuten.co.jp/voice/detail/c_id/110047?rafcid=wsc_g_cs_1018280517649528141
-                            golfCourseImageUrl:
-                              type: string
-                              description: ゴルフ場画像URL
-                              example: https://gora.golf.rakuten.co.jp/img/golf/110047/photo1.jpg
-                            evaluation:
-                              type: number
-                              description: 評価
-                              example: 3.6
+                        golfCourseId:
+                          type: integer
+                          description: ゴルフ場ID
+                          example: 110047
+                        golfCourseName:
+                          type: string
+                          description: ゴルフ場名
+                          example: 秩父国際カントリークラブ
+                        golfCourseAbbr:
+                          type: string
+                          description: ゴルフ場略称
+                          example: 秩父国際CC
+                        golfCourseNameKana:
+                          type: string
+                          description: ゴルフ場名カナ
+                          example: ちちぶこくさいかんとりーくらぶ
+                        golfCourseCaption:
+                          type: string
+                          description: ゴルフ場概要
+                        address:
+                          type: string
+                          description: 住所
+                          example: 埼玉県秩父郡皆野町三沢4633-1
+                        latitude:
+                          type: number
+                          description: 緯度
+                          example: 36.0608469
+                        longitude:
+                          type: number
+                          description: 経度
+                          example: 139.1344869
+                        highway:
+                          type: string
+                          description: 高速道路
+                        golfCourseDetailUrl:
+                          type: string
+                          description: ゴルフ場詳細URL
+                        reserveCalUrl:
+                          type: string
+                          description: 予約カレンダーURL
+                          example: https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/110047?rafcid=wsc_g_cs_1018280517649528141
+                        ratingUrl:
+                          type: string
+                          description: 評価URL
+                          example: https://booking.gora.golf.rakuten.co.jp/voice/detail/c_id/110047?rafcid=wsc_g_cs_1018280517649528141
+                        golfCourseImageUrl:
+                          type: string
+                          description: ゴルフ場画像URL
+                          example: https://gora.golf.rakuten.co.jp/img/golf/110047/photo1.jpg
+                        evaluation:
+                          type: number
+                          description: 評価
+                          example: 3.6
+
+  /api/golf-courses/{golfCourseId}:
+    get:
+      tags:
+        - golf-courses
+      summary: ゴルフ場詳細
+      description: ゴルフ場詳細
+      parameters:
+        - name: golfCourseId
+          in: path
+          description: ゴルフ場ID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ゴルフ場詳細
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  carrier:
+                    type: integer
+                    description: キャリア
+                    example: 0
+                  golfCourseId:
+                    type: integer
+                    description: ゴルフ場ID
+                    example: 30014
+                  golfCourseName:
+                    type: string
+                    description: ゴルフ場名
+                    example: みちのく古都カントリークラブ
+                  golfCourseAbbr:
+                    type: string
+                    description: ゴルフ場略称
+                    example: みちのく古都CC
+                  golfCourseNameKana:
+                    type: string
+                    description: ゴルフ場名カナ
+                    example: みちのくことかんとりーくらぶ
+                  golfCourseCaption:
+                    type: string
+                    description: ゴルフ場概要
+                    example: "岩手県奥州市にございますみちのく古都カントリークラブでございます。盛岡、宮城県栗原市、大崎市、登米市方面から東北自動車道をご使用して頂き、1時間ほどでおいで頂けます。前沢平泉インター、一関インターより降車下さい。小高い丘の上にあるリンクスタイプのコース。コース間はマウンドでセパレートされて開放感があり栗駒の山々の眺望は抜群で戦略性の高いコースを是非お楽しみください。クラブハウスもみちのくの小京都を感じさせる情緒ある雰囲気です。距離も長くないので、初心者の方や女性の方もお得に!気軽に！プレーしていただけます！早朝・薄暮もお得な料金でプレーしていただけますよ！皆さまお気軽にみちのく古都カントリークラブへ遊びに来て下さいネ！ＳＴＡＦＦ一同皆さまのお越しを心よりお待ちしております。　　　　　　★　古都のおすすめポイント　★◎１５Ｈの通称”グランドキャニオン”でのダイナミックな打　ち下ろしは古都名物！◎日差しを避けながらの楽々プレー！フェアウェイカート乗り入れ！！　（天候・コースコンディションにより行わない日がございます）◎お待たせしました！！練習場オープン！！◎レストラン自慢のお料理をご堪能下さい。　おすすめは、自慢の肉味噌をレタスで巻いていただく”古都　サラダ”、ジュウジュウと耳でも味わえる”もやし炒め”などおすすめがいっぱいです！"
+                  information:
+                    type: string
+                    description: ゴルフ場情報
+                    example: "■全カートナにナビ導入！■県南初！フェアウェイカート乗り入れで暑さを避けての楽々プレー！！注：（天候、コンディションにより行わない日がございます）　★楽天よりご予約のメンバー様、友の会会員様、同伴のお客様　も楽天掲示料金での対応となります。"
+                  highway:
+                    type: string
+                    description: 高速道路
+                    example: 東北自動車道
+                  ic:
+                    type: string
+                    description: インターチェンジ
+                    example: 平泉前沢
+                  icDistance:
+                    type: string
+                    description: インターチェンジ距離
+                    example: 15km以内
+                  latitude:
+                    type: number
+                    description: 緯度
+                    example: 39.0069478
+                  longitude:
+                    type: number
+                    description: 経度
+                    example: 141.0165861
+                  postalCode:
+                    type: string
+                    description: 郵便番号
+                    example: 029-4475
+                  address:
+                    type: string
+                    description: 住所
+                    example: 岩手県奥州市衣川中山87-5
+                  telephoneNo:
+                    type: string
+                    description: 電話番号
+                    example: 0197-52-4666
+                  faxNo:
+                    type: string
+                    description: ファックス番号
+                    example: 0197-52-3660
+                  openDay:
+                    type: string
+                    description: 開業日
+                    example: 1995-06-10
+                  closeDay:
+                    type: string
+                    description: 閉業日
+                    example: 冬期クロ－ズ（12月～3月中旬）
+                  creditCard:
+                    type: string
+                    description: クレジットカード
+                    example: JCB VISA MASTER ダイナース アメックス
+                  shoes:
+                    type: string
+                    description: シューズ
+                    example: ソフトスパイクのみ
+                  dressCode:
+                    type: string
+                    description: ドレスコード
+                    example: ＨＰマナーコードをご確認下さい。
+                  practiceFacility:
+                    type: string
+                    description: 練習施設
+                    example: あり 30Y 6打席
+                  course:
+                    type: string
+                    description: コース
+                    example: OUT・IN
+                  holeCount:
+                    type: integer
+                    description: ホール数
+                    example: 18
+                  parCount:
+                    type: integer
+                    description: パー数
+                    example: 72
+                  courseDistance:
+                    type: string
+                    description: コース距離
+                    example: 6810Y
+                  green:
+                    type: string
+                    description: グリーン
+                    example: ベント
+                  greenCount:
+                    type: integer
+                    description: グリーン数
+                    example: 1
+                  longDrivingContest:
+                    type: string
+                    description: ロングドライブコンテスト
+                    example: 4番、12番
+                  nearPin:
+                    type: string
+                    description: ニアピン
+                    example: 2番、17番
+                  ratingNum:
+                    type: integer
+                    description: 評価数
+                    example: 1179
+                  evaluation:
+                    type: number
+                    description: 評価
+                    example: 3.8
+                  staff:
+                    type: number
+                    description: スタッフ
+                    example: 3.6
+                  facility:
+                    type: number
+                    description: 設備
+                    example: 3.4
+                  meal:
+                    type: number
+                    description: メイル
+                    example: 3.4
+                  costperformance:
+                    type: number
+                    description: コストパフォーマンス
+                    example: 3.6
+                  distance:
+                    type: number
+                    description: 距離
+                    example: 3.2
+                  fairway:
+                    type: number
+                    description: フェアウェイ
+                    example: 2.9
+                  reserveCalUrl:
+                    type: string
+                    description: 予約カレンダーURL
+                    example: https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/30014?rafcid=wsc_g_cd_1018280517649528141
+                  voiceUrl:
+                    type: string
+                    description: 音声URL
+                    example: https://booking.gora.golf.rakuten.co.jp/voice/detail/c_id/30014?rafcid=wsc_g_cd_1018280517649528141
+                  layoutUrl:
+                    type: string
+                    description: レイアウトURL
+                    example: https://booking.gora.golf.rakuten.co.jp/guide/layout_disp/c_id/30014?rafcid=wsc_g_cd_1018280517649528141
+                  routeMapUrl:
+                    type: string
+                    description: ルートマップURL
+                    example: https://booking.gora.golf.rakuten.co.jp/guide/map/c_id/30014?rafcid=wsc_g_cd_1018280517649528141
+                  newPlans:
+                    type: string
+                    description: 新プラン
+                    example:
+                  ratings:
+                    type: string
+                    description: 評価
+                    example:

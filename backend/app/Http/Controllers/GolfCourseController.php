@@ -6,7 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GolfCourse\IndexRequest;
 use App\Http\Resources\GolfCourse\IndexResource;
+use App\Http\Resources\GolfCourse\ShowResource;
 use App\UseCases\GolfCourse\IndexAction;
+use App\UseCases\GolfCourse\ShowAction;
 use Illuminate\Routing\Controller;
 
 class GolfCourseController extends Controller
@@ -30,8 +32,8 @@ class GolfCourseController extends Controller
     /**
      * ゴルフ場詳細
      */
-    public function show(string $golfCourseId)
+    public function show(string $golfCourseId, ShowAction $action): ShowResource
     {
-        return $golfCourseId;
+        return new ShowResource($action($golfCourseId));
     }
 }
