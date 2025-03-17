@@ -17,5 +17,6 @@ class IndexRequest extends FormRequest
             'latitude' => 'nullable|numeric|min:-90|max:90',
             'longitude' => 'nullable|numeric|min:-180|max:180',
         ];
+
     }
 }

@@ -22,6 +22,8 @@ Route::apiResource('golf-courses', GolfCourseController::class)->only(['index', 
 Route::post('reserves', [ReserveController::class, 'store']);
 
 // 予約
+// TODO: 更新削除処理の追加
+// TODO: 認可 can:adminのような実装する
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('reserves', ReserveController::class)->only(['index', 'show']);
 });

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\RakutenGora;
 
+use App\Services\RakutenGora\Exceptions\RequiredParameterMissingException;
 use Illuminate\Support\Facades\Http;
 
-class RakutenGoraService
+class RakutenGoraService implements RakutenGoraServiceInterface
 {
     private const BASE_ENDPOINT = 'https://app.rakuten.co.jp/services/api/Gora';
     private string $applicationId;
@@ -15,12 +16,17 @@ class RakutenGoraService
     }
 
     public function searchGolfCourses(
-        int $page,
+        int|string $page,
         ?string $keyword,
-        ?int $areaCode,
-        ?int $latitude,
-        ?int $longitude,
+        int|string|null $areaCode,
+        int|string|null $latitude,
+        int|string|null $longitude,
     ) {
+        // NOTE: いずれかのパラメータが存在しない時はエラー
+        if (!$keyword && !$areaCode && !($latitude && $longitude)) {
+            throw new RequiredParameterMissingException();
+        }
+
         $params = [
             'applicationId' => $this->applicationId,
             'page' => $page,
@@ -46,6 +52,12 @@ class RakutenGoraService
 
     public function getGolfCourse(string $golfCourseId)
     {
-        return 'Hello World';
+        $params = [
+            'applicationId' => $this->applicationId,
+            'golfCourseId' => $golfCourseId,
+        ];
+
+        $response = Http::get(self::BASE_ENDPOINT . '/GoraGolfCourseDetail/20170623', $params);
+        return $response->json();
     }
 }
