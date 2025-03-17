@@ -26,3 +26,10 @@ lintfix:
 	docker compose exec frontend npm run lint:fix
 format:
 	docker compose exec frontend npm run format
+cache:
+	./backend/vendor/bin/sail php artisan config:cache
+	./backend/vendor/bin/sail php artisan route:cache
+	./backend/vendor/bin/sail php artisan view:cache
+	./backend/vendor/bin/sail php artisan event:cache
+	./backend/vendor/bin/sail php artisan optimize:clear
+	./backend/vendor/bin/sail php artisan optimize
