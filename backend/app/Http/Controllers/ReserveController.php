@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Reserve\IndexRequest;
 use App\Http\Requests\Reserve\StoreRequest;
+use App\Http\Resources\Reserve\IndexResource;
+use App\UseCases\Reserve\IndexAction;
 use App\UseCases\Reserve\StoreAction;
 use Illuminate\Routing\Controller;
 
 class ReserveController extends Controller
 {
-    public function index()
+    public function index(IndexRequest $request, IndexAction $action): IndexResource
     {
-        return 'Hello World';
+        return new IndexResource($action($request->page, $request->limit));
     }
 
     public function show()

@@ -4,6 +4,7 @@ info:
   description: 基礎研修API
   version: 1.0.0
 paths:
+  # ゴルフ場
   /api/golf-courses:
     get:
       tags:
@@ -136,7 +137,6 @@ paths:
                           type: number
                           description: 評価
                           example: 3.6
-
   /api/golf-courses/{golfCourseId}:
     get:
       tags:
@@ -334,7 +334,7 @@ paths:
                     type: string
                     description: 評価
                     example:
-
+  # ゴルフ場予約
   /api/reserves:
     post:
       tags:
@@ -371,3 +371,53 @@ paths:
       responses:
         "200":
           description: 予約
+    get:
+      tags:
+        - reserves
+      summary: 予約一覧
+      description: 予約一覧
+      parameters:
+        - name: page
+          in: query
+          description: ページ番号
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          description: 表示件数
+          required: false
+          schema:
+            type: integer
+            default: 10
+      responses:
+        "200":
+          description: 予約一覧
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: 予約ID
+                      example: 01jphdc9w22ajk06r70hkdedzn
+                    start_date:
+                      type: string
+                      description: 開始日
+                      example: 2025-01-01
+                    name:
+                      type: string
+                      description: 名前
+                      example: 山田太郎
+                    email:
+                      type: string
+                      description: メールアドレス
+                      example: test@example.com
+                    person_count:
+                      type: integer
+                      description: 人数
+                      example: 2
