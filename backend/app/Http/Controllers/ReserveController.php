@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Reserve\IndexRequest;
 use App\Http\Requests\Reserve\StoreRequest;
+use App\Http\Requests\Reserve\UpdateRequest;
 use App\Http\Resources\Reserve\IndexResource;
 use App\Http\Resources\Reserve\ShowResource;
 use App\Models\Reserve;
 use App\UseCases\Reserve\IndexAction;
 use App\UseCases\Reserve\ShowAction;
 use App\UseCases\Reserve\StoreAction;
+use App\UseCases\Reserve\UpdateAction;
 use Illuminate\Routing\Controller;
 
 class ReserveController extends Controller
@@ -35,9 +37,9 @@ class ReserveController extends Controller
         );
     }
 
-    public function update()
+    public function update(Reserve $reserve, UpdateRequest $request, UpdateAction $action): void
     {
-        return 'Hello World';
+        $action($reserve, $request->validated());
     }
 
     public function destroy()

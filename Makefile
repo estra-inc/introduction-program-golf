@@ -32,3 +32,5 @@ cache:
 	./backend/vendor/bin/sail php artisan cache:clear
 	./backend/vendor/bin/sail php artisan view:cache
 	./backend/vendor/bin/sail php artisan event:cache
+route-list:
+	./backend/vendor/bin/sail php artisan route:list

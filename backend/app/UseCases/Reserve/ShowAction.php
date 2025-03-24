@@ -18,7 +18,6 @@ class ShowAction
 
     public function __invoke(Reserve $reserve): Reserve
     {
-        \Log::info($reserve);
         $golfCourse = $this->rakutenGoraService->getGolfCourse($reserve->golf_course_id);
         $reserve->golf_course = $golfCourse;
         return $reserve;

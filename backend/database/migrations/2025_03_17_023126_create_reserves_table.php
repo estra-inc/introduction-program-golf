@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->string('name');
             $table->string('email');
+            $table->unsignedInteger('status_id');
             $table->unsignedInteger('person_count');
             $table->timestamps();
         });

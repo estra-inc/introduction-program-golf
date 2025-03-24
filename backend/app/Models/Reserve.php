@@ -15,6 +15,7 @@ class Reserve extends Model
         'name',
         'email',
         'person_count',
+        'status_id',
     ];
 
     protected $casts = [

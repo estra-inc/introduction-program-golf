@@ -21,6 +21,7 @@ class StoreAction
             'name' => $name,
             'email' => $email,
             'person_count' => $personCount,
+            'status_id' => 1,
         ]);
     }
 }
