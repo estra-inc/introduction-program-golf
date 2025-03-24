@@ -4,6 +4,36 @@ info:
   description: 基礎研修API
   version: 1.0.0
 paths:
+  # 認証
+  /api/login:
+    post:
+      tags:
+        - auth
+      summary: ログイン
+      description: ログイン
+      headers:
+        X-CSRF-TOKEN:
+          type: string
+          description: CSRFトークン
+          example: 1234567890
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: メールアドレス
+                  example: admin@example.com
+                password:
+                  type: string
+                  description: パスワード
+                  example: password
+      responses:
+        "200":
+          description: ログイン
   # ゴルフ場
   /api/golf-courses:
     get:
@@ -334,6 +364,7 @@ paths:
                     type: string
                     description: 評価
                     example:
+
   # ゴルフ場予約
   /api/reserves:
     post:

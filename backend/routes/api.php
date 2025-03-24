@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GolfCourseController;
 use App\Http\Controllers\ReserveController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+// 認証
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout']);
 
 // ゴルフ場
 Route::apiResource('golf-courses', GolfCourseController::class)->only(['index', 'show']);
