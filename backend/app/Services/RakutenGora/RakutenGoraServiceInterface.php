@@ -28,5 +28,5 @@ interface RakutenGoraServiceInterface
      * @param string $golfCourseId ゴルフコースID
      * @return array ゴルフコース情報
      */
-    public function getGolfCourse(string $golfCourseId);
+    public function getGolfCourse(string|int $golfCourseId);
 }

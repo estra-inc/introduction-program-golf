@@ -50,7 +50,7 @@ class RakutenGoraService implements RakutenGoraServiceInterface
         return $response->json();
     }
 
-    public function getGolfCourse(string $golfCourseId)
+    public function getGolfCourse(string|int $golfCourseId)
     {
         $params = [
             'applicationId' => $this->applicationId,

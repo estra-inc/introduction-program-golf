@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\UseCases\GolfCourse;
+namespace App\UseCases\Reserve;
 
+use App\Models\Reserve;
 use App\Services\RakutenGora\RakutenGoraServiceInterface;
 
 class ShowAction
@@ -15,8 +16,11 @@ class ShowAction
         $this->rakutenGoraService = $rakutenGoraService;
     }
 
-    public function __invoke(string|int $golfCourseId)
+    public function __invoke(Reserve $reserve): Reserve
     {
-        return $this->rakutenGoraService->getGolfCourse($golfCourseId);
+        \Log::info($reserve);
+        $golfCourse = $this->rakutenGoraService->getGolfCourse($reserve->golf_course_id);
+        $reserve->golf_course = $golfCourse;
+        return $reserve;
     }
 }
