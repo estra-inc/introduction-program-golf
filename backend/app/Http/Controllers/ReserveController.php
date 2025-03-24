@@ -8,6 +8,7 @@ use App\Http\Requests\Reserve\UpdateRequest;
 use App\Http\Resources\Reserve\IndexResource;
 use App\Http\Resources\Reserve\ShowResource;
 use App\Models\Reserve;
+use App\UseCases\Reserve\DestroyAction;
 use App\UseCases\Reserve\IndexAction;
 use App\UseCases\Reserve\ShowAction;
 use App\UseCases\Reserve\StoreAction;
@@ -42,8 +43,8 @@ class ReserveController extends Controller
         $action($reserve, $request->validated());
     }
 
-    public function destroy()
+    public function destroy(Reserve $reserve, DestroyAction $action): void
     {
-        return 'Hello World';
+        $action($reserve);
     }
 }
