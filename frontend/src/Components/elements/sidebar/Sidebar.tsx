@@ -12,7 +12,7 @@ type SidebarProps = {
 export default function Sidebar({ links }: SidebarProps) {
   return (
     <>
-      <div className="w-60 bg-green-400 p-4 pt-10 h-full fixed top-0 left-0">
+      <div className="w-80 bg-green-400 p-4 pt-10 h-full fixed top-0 left-0">
         {links.map((link) => (
           <Link
             key={link.href}

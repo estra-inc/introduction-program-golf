@@ -1,5 +1,3 @@
-"use client";
-
 import Sidebar from "@/Components/elements/sidebar/Sidebar";
 
 export default function GuestSidebar() {

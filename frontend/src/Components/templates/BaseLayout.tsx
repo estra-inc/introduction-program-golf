@@ -8,7 +8,7 @@ export default function BaseLayout({
   return (
     <div className="flex min-h-screen">
       <GuestSidebar />
-      <div className="flex-1 px-16 my-16 ml-60">{children}</div>
+      <div className="flex-1 px-16 my-16 ml-80">{children}</div>
     </div>
   );
 }
