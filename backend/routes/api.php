@@ -28,6 +28,6 @@ Route::post('reserves', [ReserveController::class, 'store']);
 
 // 予約
 // TODO: 認可 can:adminのような実装する
-// Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:admin')->group(function () {
     Route::apiResource('reserves', ReserveController::class)->only(['index', 'show', 'update', 'destroy']) ->parameters(['reserves' => 'reserve']);
-// });
+});
