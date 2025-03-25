@@ -6,9 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\UseCases\Auth\LoginAction;
+use App\UseCases\Auth\LogoutAction;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -21,12 +21,8 @@ class AuthController extends Controller
         );
     }
 
-    public function logout(Request $request): void
+    public function logout(Request $request, LogoutAction $action): void
     {
-
-        Auth::logout();
-        $request->session()->invalidate();
-        // return new LogoutResource($action($request->email, $request->password));
-        // return response()->json(['message' => 'ログアウトしました']);
+        $action($request);
     }
 }
