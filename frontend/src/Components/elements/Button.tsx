@@ -1,3 +1,5 @@
+"use client";
+
 import { Button as HButton } from "@heroui/react";
 import type { ButtonProps as HButtonProps } from "@heroui/react";
 import { useMemo } from "react";

@@ -1,4 +1,5 @@
 import { Input, Select } from "@/Components/elements/form";
+import { Pagination } from "@/Components/elements/Pagination";
 import MainTemplate from "@/Components/templates/MainTemplate";
 import { searchGolfCourses } from "@/features/golf-course/api/searchGolfCourses";
 import CourseCard from "@/features/golf-course/components/CourseCard";
@@ -18,11 +19,18 @@ export default async function Page() {
           <Select options={options} label="エリア" />
           <Input label="キーワード" />
         </div>
+
         <div className="flex flex-col gap-4">
           {golfCourses.Items.map((golfCourse) => (
             <CourseCard key={golfCourse.golfCourseId} golfCourse={golfCourse} />
           ))}
         </div>
+
+        <Pagination
+          initialPage={1}
+          total={golfCourses.last}
+          className="mx-auto"
+        />
       </MainTemplate>
     </>
   );
