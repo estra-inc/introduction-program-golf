@@ -11,10 +11,8 @@ type ButtonProps = {
 export function Button({ children, ...props }: ButtonProps) {
   const style = useMemo(() => {
     switch (props.variant) {
-      case "solid":
-        return "bg-primary text-white font-bold";
       default:
-        return "";
+        return "bg-primary text-white font-bold";
     }
   }, [props.variant]);
 
