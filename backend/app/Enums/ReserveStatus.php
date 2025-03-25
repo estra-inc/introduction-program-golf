@@ -30,4 +30,13 @@ enum ReserveStatus: int
                 'label' => self::getLabel($status->value),
             ]);
     }
+
+    public static function validate(int $value): bool
+    {
+        if (in_array($value, array_column(self::cases(), 'value'))) {
+            return true;
+        }
+
+        throw new \Exception("Invalid status {$value}");
+    }
 }
