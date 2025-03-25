@@ -2,21 +2,33 @@
 
 import { Card, CardBody, Image } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import { SearchGolfCourseItem } from "../types/SearchGolfCourseItem";
 
-export default function CourseCard() {
+type CourseCardProps = {
+  golfCourse: Pick<
+    SearchGolfCourseItem,
+    | "golfCourseId"
+    | "golfCourseImageUrl"
+    | "golfCourseName"
+    | "golfCourseAbbr"
+    | "golfCourseCaption"
+  >;
+};
+
+export default function CourseCard({ golfCourse }: CourseCardProps) {
   const router = useRouter();
-  const courseName = "ゴルフ場名";
-  const courseDetail =
-    "ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細ゴルフ場詳細";
 
   return (
-    <Card isPressable onPress={() => router.push("/golf-courses/1")}>
+    <Card
+      isPressable
+      onPress={() => router.push(`/golf-courses/${golfCourse.golfCourseId}`)}
+    >
       <CardBody>
         <div className="grid grid-cols-3 gap-4">
           <div className="col-span-1">
             <Image
               alt="ゴルフ場"
-              src="/images/golf-course.jpg"
+              src={golfCourse.golfCourseImageUrl}
               className="object-cover"
               height={200}
               width="100%"
@@ -25,8 +37,15 @@ export default function CourseCard() {
 
           <div className="col-span-2">
             <div className="flex flex-col gap-2">
-              <div className="text-lg font-bold">{courseName}</div>
-              <div className="text-sm text-gray-500">{courseDetail}</div>
+              <div className="text-lg font-bold">
+                {golfCourse.golfCourseName}
+              </div>
+              <div className="text-sm text-gray-500">
+                {golfCourse.golfCourseAbbr}
+              </div>
+              <div className="text-sm line-clamp-6">
+                {golfCourse.golfCourseCaption}
+              </div>
             </div>
           </div>
         </div>
