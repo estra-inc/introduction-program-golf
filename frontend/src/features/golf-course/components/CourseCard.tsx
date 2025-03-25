@@ -22,6 +22,7 @@ export default function CourseCard() {
               width="100%"
             />
           </div>
+
           <div className="col-span-2">
             <div className="flex flex-col gap-2">
               <div className="text-lg font-bold">{courseName}</div>
