@@ -23,7 +23,7 @@ Route::post('reserves', [ReserveController::class, 'store']);
 
 // 予約
 // TODO: 認可 can:adminのような実装する
-Route::middleware('auth:admin')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     // NOTE: Laravelが「reserf」という名前のパラメータとして解釈してしまうため、パラメータ名を変更する
     Route::apiResource('reserves', ReserveController::class)->only(['index', 'show', 'update', 'destroy']) ->parameters(['reserves' => 'reserve']);
 });
