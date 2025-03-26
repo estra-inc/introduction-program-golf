@@ -11,6 +11,8 @@ type ButtonProps = {
 export function Button({ children, ...props }: ButtonProps) {
   const style = useMemo(() => {
     switch (props.variant) {
+      case "bordered":
+        return "";
       default:
         return "bg-primary text-white font-bold";
     }
