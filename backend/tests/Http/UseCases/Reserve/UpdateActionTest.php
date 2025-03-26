@@ -33,7 +33,7 @@ class UpdateActionTest extends TestCase
         ]);
 
         // 実行
-        $this->updateAction->__invoke($reserve, [
+        ($this->updateAction)($reserve, [
             'status_id' => ReserveStatus::CONFIRMED->value
         ]);
 
@@ -59,7 +59,7 @@ class UpdateActionTest extends TestCase
         $this->expectExceptionMessage('Invalid status 999');
 
         // 実行
-        $this->updateAction->__invoke($reserve, [
+        ($this->updateAction)($reserve, [
             'status_id' => 999
         ]);
     }
@@ -75,7 +75,7 @@ class UpdateActionTest extends TestCase
         ]);
 
         // 実行
-        $this->updateAction->__invoke($reserve, []);
+        ($this->updateAction)($reserve, []);
 
         // 検証
         $this->assertEquals(
@@ -97,7 +97,7 @@ class UpdateActionTest extends TestCase
         // 全ての有効なステータスでテスト
         foreach (ReserveStatus::cases() as $status) {
             // 実行
-            $this->updateAction->__invoke($reserve, [
+            ($this->updateAction)($reserve, [
                 'status_id' => $status->value
             ]);
 
@@ -127,7 +127,7 @@ class UpdateActionTest extends TestCase
         $reserve = Reserve::factory()->create($originalData);
 
         // 実行
-        $this->updateAction->__invoke($reserve, [
+        ($this->updateAction)($reserve, [
             'status_id' => ReserveStatus::CONFIRMED->value
         ]);
 

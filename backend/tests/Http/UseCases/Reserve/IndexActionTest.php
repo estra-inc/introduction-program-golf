@@ -30,7 +30,7 @@ class IndexActionTest extends TestCase
         Reserve::factory()->count(3)->create();
 
         // 実行
-        $result = $this->indexAction->__invoke(1, 10);
+        $result = ($this->indexAction)(1, 10);
 
         // 検証
         $this->assertCount(3, $result);
@@ -56,13 +56,13 @@ class IndexActionTest extends TestCase
         Reserve::factory()->count(15)->create();
 
         // 1ページ目（10件）
-        $page1Result = $this->indexAction->__invoke(1, 10);
+        $page1Result = ($this->indexAction)(1, 10);
         $this->assertCount(10, $page1Result);
         $this->assertEquals(15, $page1Result->total());
         $this->assertEquals(1, $page1Result->currentPage());
 
         // 2ページ目（5件）
-        $page2Result = $this->indexAction->__invoke(2, 10);
+        $page2Result = ($this->indexAction)(2, 10);
         $this->assertCount(5, $page2Result);
         $this->assertEquals(15, $page2Result->total());
         $this->assertEquals(2, $page2Result->currentPage());
@@ -74,7 +74,7 @@ class IndexActionTest extends TestCase
     public function 予約が存在しない場合は空の結果が返る(): void
     {
         // 実行
-        $result = $this->indexAction->__invoke(1, 10);
+        $result = ($this->indexAction)(1, 10);
 
         // 検証
         $this->assertCount(0, $result);
@@ -90,7 +90,7 @@ class IndexActionTest extends TestCase
         Reserve::factory()->count(5)->create();
 
         // 実行（存在しない3ページ目を指定）
-        $result = $this->indexAction->__invoke(3, 10);
+        $result = ($this->indexAction)(3, 10);
 
         // 検証
         $this->assertCount(0, $result);
@@ -107,7 +107,7 @@ class IndexActionTest extends TestCase
         Reserve::factory()->count(7)->create();
 
         // リミット5で実行
-        $result = $this->indexAction->__invoke(1, 5);
+        $result = ($this->indexAction)(1, 5);
 
         // 検証
         $this->assertCount(5, $result);
@@ -133,7 +133,7 @@ class IndexActionTest extends TestCase
         ]);
 
         // 実行
-        $result = $this->indexAction->__invoke(1, 10);
+        $result = ($this->indexAction)(1, 10);
 
         // 検証
         $this->assertCount(3, $result);
@@ -158,7 +158,7 @@ class IndexActionTest extends TestCase
         ]);
 
         // 実行
-        $result = $this->indexAction->__invoke(1, 10);
+        $result = ($this->indexAction)(1, 10);
 
         // 検証
         $this->assertCount(1, $result);

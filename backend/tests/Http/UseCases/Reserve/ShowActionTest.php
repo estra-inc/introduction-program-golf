@@ -43,7 +43,7 @@ class ShowActionTest extends TestCase
         ]);
 
         // 実行
-        $result = $this->showAction->__invoke($reserve);
+        $result = ($this->showAction)($reserve);
 
         // 予約情報の検証
         $this->assertEquals('1234', $result->golf_course_id);
@@ -70,7 +70,7 @@ class ShowActionTest extends TestCase
         $reserve = Reserve::factory()->create();
 
         // 実行
-        $result = $this->showAction->__invoke($reserve);
+        $result = ($this->showAction)($reserve);
 
         // 必須属性の存在確認
         $requiredAttributes = [
@@ -100,7 +100,7 @@ class ShowActionTest extends TestCase
         $reserve = Reserve::factory()->create();
 
         // 実行
-        $result = $this->showAction->__invoke($reserve);
+        $result = ($this->showAction)($reserve);
 
         // ゴルフ場情報の必須フィールドを検証
         $requiredFields = [
@@ -136,7 +136,7 @@ class ShowActionTest extends TestCase
         ]);
 
         // 実行
-        $result = $this->showAction->__invoke($reserve);
+        $result = ($this->showAction)($reserve);
 
         // 日付形式の検証
         $this->assertEquals('2024-12-31', $result->start_date->format('Y-m-d'));

@@ -34,7 +34,7 @@ class StoreActionTest extends TestCase
         $personCount = 4;
 
         // 実行
-        $this->storeAction->__invoke(
+        ($this->storeAction)(
             $golfCourseId,
             $startDate,
             $name,
@@ -66,7 +66,7 @@ class StoreActionTest extends TestCase
         $personCount = 4;
 
         // 実行
-        $this->storeAction->__invoke(
+        ($this->storeAction)(
             $golfCourseId,
             $startDate,
             $name,
@@ -112,7 +112,7 @@ class StoreActionTest extends TestCase
 
         // 実行
         foreach ($reserves as $reserve) {
-            $this->storeAction->__invoke(
+            ($this->storeAction)(
                 $reserve['golf_course_id'],
                 $reserve['start_date'],
                 $reserve['name'],
@@ -148,7 +148,7 @@ class StoreActionTest extends TestCase
         $personCount = '4'; // 文字列として渡す
 
         // 実行
-        $this->storeAction->__invoke(
+        ($this->storeAction)(
             $golfCourseId,
             $startDate,
             $name,

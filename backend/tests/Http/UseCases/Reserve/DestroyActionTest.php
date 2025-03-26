@@ -30,7 +30,7 @@ class DestroyActionTest extends TestCase
         $reserve = Reserve::factory()->create();
 
         // 実行
-        $this->destroyAction->__invoke($reserve);
+        ($this->destroyAction)($reserve);
 
         // 検証
         $this->assertDatabaseMissing('reserves', [
@@ -49,7 +49,7 @@ class DestroyActionTest extends TestCase
         $reserve3 = Reserve::factory()->create();
 
         // 実行
-        $this->destroyAction->__invoke($reserve2);
+        ($this->destroyAction)($reserve2);
 
         // 検証
         $this->assertDatabaseHas('reserves', [

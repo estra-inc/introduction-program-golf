@@ -28,7 +28,7 @@ class IndexActionTest extends TestCase
     public function キーワードで検索できる(): void
     {
         // 実行
-        $result = $this->indexAction->__invoke(
+        $result = ($this->indexAction)(
             page: 1,
             keyword: '富士山',
             areaCode: null,
@@ -65,7 +65,7 @@ class IndexActionTest extends TestCase
     public function エリアコードで検索できる(): void
     {
         // 実行
-        $result = $this->indexAction->__invoke(
+        $result = ($this->indexAction)(
             page: 1,
             keyword: null,
             areaCode: '13', // 東京都
@@ -86,7 +86,7 @@ class IndexActionTest extends TestCase
     public function 位置情報で検索できる(): void
     {
         // 実行
-        $result = $this->indexAction->__invoke(
+        $result = ($this->indexAction)(
             page: 1,
             keyword: null,
             areaCode: null,
@@ -109,7 +109,7 @@ class IndexActionTest extends TestCase
     public function ページネーションが正しく動作する(): void
     {
         // 1ページ目
-        $page1Result = $this->indexAction->__invoke(
+        $page1Result = ($this->indexAction)(
             page: 1,
             keyword: '富士山',
             areaCode: null,
@@ -118,7 +118,7 @@ class IndexActionTest extends TestCase
         );
 
         // 2ページ目
-        $page2Result = $this->indexAction->__invoke(
+        $page2Result = ($this->indexAction)(
             page: 2,
             keyword: '富士山',
             areaCode: null,
@@ -143,7 +143,7 @@ class IndexActionTest extends TestCase
     {
         $this->expectException(RequiredParameterMissingException::class);
 
-        $this->indexAction->__invoke(
+        ($this->indexAction)(
             page: 1,
             keyword: null,
             areaCode: null,
@@ -157,7 +157,7 @@ class IndexActionTest extends TestCase
      */
     public function 検索結果のゴルフ場情報が正しい形式である(): void
     {
-        $result = $this->indexAction->__invoke(
+        $result = ($this->indexAction)(
             page: 1,
             keyword: '富士山',
             areaCode: null,

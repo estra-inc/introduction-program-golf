@@ -27,7 +27,7 @@ class ShowActionTest extends TestCase
     public function ゴルフ場の詳細情報を取得できる(): void
     {
         // 実行
-        $result = $this->showAction->__invoke('1');
+        $result = ($this->showAction)('1');
 
         // 構造の検証
         $this->assertArrayHasKey('Item', $result);
@@ -84,7 +84,7 @@ class ShowActionTest extends TestCase
     public function 数値型のIDでゴルフ場の詳細情報を取得できる(): void
     {
         // 実行
-        $result = $this->showAction->__invoke(1);
+        $result = ($this->showAction)(1);
 
         // 構造の検証
         $this->assertArrayHasKey('Item', $result);
@@ -99,7 +99,7 @@ class ShowActionTest extends TestCase
      */
     public function エリアコードが都道府県の範囲内である(): void
     {
-        $result = $this->showAction->__invoke('1');
+        $result = ($this->showAction)('1');
         $areaCode = (int)$result['Item']['areaCode'];
 
         // エリアコードが1-47（都道府県コード）の範囲内であることを確認
@@ -112,7 +112,7 @@ class ShowActionTest extends TestCase
      */
     public function 緯度経度が日本国内の範囲である(): void
     {
-        $result = $this->showAction->__invoke('1');
+        $result = ($this->showAction)('1');
         $latitude = (float)$result['Item']['latitude'];
         $longitude = (float)$result['Item']['longitude'];
 
