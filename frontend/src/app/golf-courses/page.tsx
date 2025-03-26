@@ -2,7 +2,7 @@ import { Input, Select } from "@/components/elements/form";
 import { Pagination } from "@/components/elements/Pagination";
 import MainTemplate from "@/components/templates/MainTemplate";
 import { searchGolfCourses } from "@/features/golf-course/api/searchGolfCourses";
-import CourseCard from "@/features/golf-course/components/CourseCard";
+import CourseCard from "@/features/golf-course/components/GolfCourseCard";
 
 export default async function Page() {
   const options = [
@@ -12,13 +12,14 @@ export default async function Page() {
   ];
 
   const golfCourses = await searchGolfCourses();
+
   return (
     <>
       <MainTemplate title="ゴルフ場 検索" subText="search golf courses">
-        <div className="flex gap-4">
+        <form className="flex gap-4">
           <Select options={options} label="エリア" />
           <Input label="キーワード" />
-        </div>
+        </form>
 
         <div className="flex flex-col gap-4">
           {golfCourses.Items.map((golfCourse) => (
