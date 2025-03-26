@@ -5,14 +5,14 @@ import { SelectProps as HSelectProps } from "@heroui/react";
 import { Key } from "react";
 
 type SelectProps = {
-  options: { label: string; value: Key | null | undefined }[];
+  options: { label: string; key: Key | null | undefined }[];
 } & Omit<HSelectProps, "children">;
 
 export function Select({ options, ...props }: SelectProps) {
   return (
     <HSelect {...props}>
       {options.map((option) => (
-        <HSelectItem key={option.value}>{option.label}</HSelectItem>
+        <HSelectItem key={option.key}>{option.label}</HSelectItem>
       ))}
     </HSelect>
   );

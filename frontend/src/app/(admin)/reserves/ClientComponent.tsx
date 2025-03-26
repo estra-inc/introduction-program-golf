@@ -1,6 +1,5 @@
 "use client";
 
-import MainTemplate from "@/components/templates/MainTemplate";
 import ReserveListTable from "@/features/reserve/components/ReserveListTable";
 import { Reserve } from "@/features/reserve/types";
 import { useRouter } from "next/navigation";
