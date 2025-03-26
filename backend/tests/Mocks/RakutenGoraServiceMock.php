@@ -19,11 +19,11 @@ class RakutenGoraServiceMock implements RakutenGoraServiceInterface
      * ゴルフ場一覧を取得
      */
     public function searchGolfCourses(
-        string|int $page = 1,
-        string|null $keyword = null,
-        string|int|null $areaCode = null,
-        string|int|null $latitude = null,
-        string|int|null $longitude = null
+        ?int $page = 1,
+        ?string $keyword = null,
+        ?int $areaCode = null,
+        ?float $latitude = null,
+        ?float $longitude = null
     ): array {
         if (!$keyword && !$areaCode && !($latitude && $longitude)) {
             throw new RequiredParameterMissingException();
@@ -74,7 +74,7 @@ class RakutenGoraServiceMock implements RakutenGoraServiceInterface
     /**
      * ゴルフ場詳細を取得
      */
-    public function getGolfCourse(string|int $golfCourseId): array
+    public function getGolfCourse(int $golfCourseId): array
     {
         // 基本情報の生成
         $basicInfo = GolfCourseFactory::create(['golfCourseId' => $golfCourseId, 'detailed' => false]);

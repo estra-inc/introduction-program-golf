@@ -16,11 +16,11 @@ class RakutenGoraService implements RakutenGoraServiceInterface
     }
 
     public function searchGolfCourses(
-        int|string $page,
-        ?string $keyword,
-        int|string|null $areaCode,
-        int|string|null $latitude,
-        int|string|null $longitude,
+        ?int $page = 1,
+        ?string $keyword = null,
+        ?int $areaCode = null,
+        ?float $latitude = null,
+        ?float $longitude = null,
     ) {
         // NOTE: いずれかのパラメータが存在しない時はエラー
         if (!$keyword && !$areaCode && !($latitude && $longitude)) {
@@ -50,7 +50,7 @@ class RakutenGoraService implements RakutenGoraServiceInterface
         return $response->json();
     }
 
-    public function getGolfCourse(string|int $golfCourseId)
+    public function getGolfCourse(int $golfCourseId)
     {
         $params = [
             'applicationId' => $this->applicationId,

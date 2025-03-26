@@ -15,18 +15,18 @@ interface RakutenGoraServiceInterface
      * @return array 検索結果
      */
     public function searchGolfCourses(
-        int|string $page,
-        ?string $keyword,
-        int|string|null $areaCode,
-        int|string|null $latitude,
-        int|string|null $longitude,
+        ?int $page = 1,
+        ?string $keyword = null,
+        ?int $areaCode = null,
+        ?float $latitude = null,
+        ?float $longitude = null,
     );
 
     /**
      * 指定されたIDのゴルフコース情報を取得する
      *
-     * @param string $golfCourseId ゴルフコースID
+     * @param int $golfCourseId ゴルフコースID
      * @return array ゴルフコース情報
      */
-    public function getGolfCourse(string|int $golfCourseId);
+    public function getGolfCourse(int $golfCourseId);
 }
