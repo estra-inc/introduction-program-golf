@@ -1,6 +1,15 @@
 import { SearchGolfCourseItem } from "../types/SearchGolfCourseItem";
 
-export const searchGolfCourses = async (): Promise<{
+// TODO: APIを叩く
+export const searchGolfCourses = async ({
+  area,
+  keyword,
+  page,
+}: {
+  area?: string;
+  keyword?: string;
+  page?: string;
+}): Promise<{
   count: number;
   page: number;
   first: number;

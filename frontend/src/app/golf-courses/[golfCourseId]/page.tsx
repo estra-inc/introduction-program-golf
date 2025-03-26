@@ -1,7 +1,7 @@
 import MainTemplate from "@/components/templates/MainTemplate";
 import { fetchGolfCourse } from "@/features/golf-course/api/fetchGolfCourse";
 import { Image } from "@/components/elements/Image";
-import ReserveModalButton from "@/features/golf-course/components/GolfCourseReserveFormModal";
+import GolfCourseReserveFormModal from "@/features/golf-course/components/GolfCourseReserveFormModal";
 
 type PageProps = {
   params: {
@@ -44,7 +44,7 @@ export default async function Page({ params }: PageProps) {
               <h2 className="text-md">{golfCourse.golfCourseCaption}</h2>
             </div>
 
-            <ReserveModalButton />
+            <GolfCourseReserveFormModal />
           </div>
         </div>
 

@@ -1,7 +1,4 @@
-"use client";
-
 import { Card, CardBody, Image } from "@heroui/react";
-import { useRouter } from "next/navigation";
 import { SearchGolfCourseItem } from "../types/SearchGolfCourseItem";
 
 type CourseCardProps = {
@@ -16,13 +13,8 @@ type CourseCardProps = {
 };
 
 export default function CourseCard({ golfCourse }: CourseCardProps) {
-  const router = useRouter();
-
   return (
-    <Card
-      isPressable
-      onPress={() => router.push(`/golf-courses/${golfCourse.golfCourseId}`)}
-    >
+    <Card isPressable>
       <CardBody>
         <div className="grid grid-cols-3 gap-4">
           <div className="col-span-1">

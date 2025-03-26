@@ -23,7 +23,7 @@ const reserveSchema = yup.object().shape({
 
 type ReserveFormData = yup.InferType<typeof reserveSchema>;
 
-export default function ReserveModalButton() {
+export default function GolfCourseReserveFormModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     register,

@@ -1,36 +1,34 @@
-import { Input, Select } from "@/components/elements/form";
-import { Pagination } from "@/components/elements/Pagination";
 import MainTemplate from "@/components/templates/MainTemplate";
 import { searchGolfCourses } from "@/features/golf-course/api/searchGolfCourses";
-import CourseCard from "@/features/golf-course/components/GolfCourseCard";
+import ClientComponent from "./ClientComponent";
 
-export default async function Page() {
-  const options = [
-    { label: "テスト1", value: "test1" },
-    { label: "テスト2", value: "test2" },
-    { label: "テスト3", value: "test3" },
-  ];
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const { area, keyword, page } = await searchParams;
+  const areaString = typeof area === "string" ? area : undefined;
+  const keywordString = typeof keyword === "string" ? keyword : undefined;
+  const pageString = typeof page === "string" ? page : "1";
 
-  const golfCourses = await searchGolfCourses();
+  const golfCourses = await searchGolfCourses({
+    area: areaString,
+    keyword: keywordString,
+    page: pageString,
+  });
 
   return (
     <>
       <MainTemplate title="ゴルフ場 検索" subText="search golf courses">
-        <form className="flex gap-4">
-          <Select options={options} label="エリア" />
-          <Input label="キーワード" />
-        </form>
-
-        <div className="flex flex-col gap-4">
-          {golfCourses.Items.map((golfCourse) => (
-            <CourseCard key={golfCourse.golfCourseId} golfCourse={golfCourse} />
-          ))}
-        </div>
-
-        <Pagination
-          initialPage={1}
-          total={golfCourses.last}
-          className="mx-auto"
+        <ClientComponent
+          golfCourses={golfCourses.Items}
+          query={{
+            area: areaString ? Number(areaString) : undefined,
+            keyword: keywordString ?? "",
+            page: pageString ? Number(pageString) : 1,
+          }}
+          lastPage={golfCourses.last}
         />
       </MainTemplate>
     </>
