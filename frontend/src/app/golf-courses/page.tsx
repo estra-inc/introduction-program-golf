@@ -1,6 +1,6 @@
-import { Input, Select } from "@/Components/elements/form";
-import { Pagination } from "@/Components/elements/Pagination";
-import MainTemplate from "@/Components/templates/MainTemplate";
+import { Input, Select } from "@/components/elements/form";
+import { Pagination } from "@/components/elements/Pagination";
+import MainTemplate from "@/components/templates/MainTemplate";
 import { searchGolfCourses } from "@/features/golf-course/api/searchGolfCourses";
 import CourseCard from "@/features/golf-course/components/CourseCard";
 

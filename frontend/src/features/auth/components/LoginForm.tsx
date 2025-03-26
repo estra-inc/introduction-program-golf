@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/Components/elements/Button";
-import { Input } from "@/Components/elements/form";
+import { Button } from "@/components/elements/Button";
+import { Input } from "@/components/elements/form";
 
 type LoginFormProps = {
   onSuccess: () => void;

@@ -1,6 +1,6 @@
-import MainTemplate from "@/Components/templates/MainTemplate";
+import MainTemplate from "@/components/templates/MainTemplate";
 import { fetchGolfCourse } from "@/features/golf-course/api/fetchGolfCourse";
-import { Image } from "@/Components/elements/Image";
+import { Image } from "@/components/elements/Image";
 import ReserveModalButton from "@/features/golf-course/components/ReserveModalButton";
 
 type PageProps = {
