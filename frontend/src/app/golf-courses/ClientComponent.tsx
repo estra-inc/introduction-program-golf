@@ -36,9 +36,9 @@ export default function ClientComponent({
   lastPage,
 }: ClientComponentProps) {
   const options = [
-    { label: "テスト1", value: 1 },
-    { label: "テスト2", value: 2 },
-    { label: "テスト3", value: 3 },
+    { label: "テスト1", key: 1 },
+    { label: "テスト2", key: 2 },
+    { label: "テスト3", key: 3 },
   ];
 
   const router = useRouter();
