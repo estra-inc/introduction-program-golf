@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GolfCourseController;
 use App\Http\Controllers\ReserveController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,8 @@ Route::post('reserves', [ReserveController::class, 'store']);
 // 予約
 // TODO: 認可 can:adminのような実装する
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('me', [AuthController::class, 'me']);
+
     // NOTE: Laravelが「reserf」という名前のパラメータとして解釈してしまうため、パラメータ名を変更する
     Route::apiResource('reserves', ReserveController::class)->only(['index', 'show', 'update', 'destroy']) ->parameters(['reserves' => 'reserve']);
 });
