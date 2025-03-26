@@ -3,6 +3,7 @@
 import { Button } from "@/components/elements/Button";
 import { Input } from "@/components/elements/form";
 import {
+  addToast,
   Modal,
   ModalBody,
   ModalContent,
@@ -28,13 +29,21 @@ export default function ReserveModalButton() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<ReserveFormData>({
     resolver: yupResolver(reserveSchema),
   });
 
   const onSubmit = (data: ReserveFormData) => {
     // TODO: 予約処理
-    // トースト表示処理
+    console.log(data);
+
+    addToast({
+      title: "予約完了",
+      description: "予約が完了しました",
+    });
+    onClose();
+    reset();
   };
 
   console.log(errors);
