@@ -7,7 +7,7 @@ up:
 down:
 	docker compose down
 test:
-	./backend/vendor/bin/sail php artisan test
+	./backend/vendor/bin/sail php artisan test tests/Http/UseCases/Reserve/IndexActionTest.php
 migrate:
 	./backend/vendor/bin/sail php artisan migrate
 fresh:
