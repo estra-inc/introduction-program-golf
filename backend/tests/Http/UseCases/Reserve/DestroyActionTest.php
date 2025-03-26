@@ -18,13 +18,13 @@ class DestroyActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->destroyAction = app()->make(DestroyAction::class);
+        $this->destroyAction = new DestroyAction();
     }
 
     /**
      * @test
      */
-    public function 予約を削除できる(): void
+    public function 予約を削除できること(): void
     {
         // テストデータ作成
         $reserve = Reserve::factory()->create();
@@ -41,7 +41,7 @@ class DestroyActionTest extends TestCase
     /**
      * @test
      */
-    public function 複数の予約が存在する場合でも特定の予約のみが削除される(): void
+    public function 複数の予約が存在する場合でも特定の予約のみが削除されること(): void
     {
         // テストデータ作成
         $reserve1 = Reserve::factory()->create();
