@@ -15,17 +15,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class ShowActionTest extends TestCase
 {
     use RefreshDatabase;
-    use UsesRakutenGoraMockTrait;
 
     private ShowAction $showAction;
-    private RakutenGoraServiceInterface $rakutenGoraMock;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->setUpRakutenGoraMock();
-        $this->showAction = new ShowAction($this->rakutenGoraService);
-        $this->rakutenGoraMock = app()->make(RakutenGoraServiceInterface::class);
+        $this->showAction = new ShowAction();
     }
 
     /**
