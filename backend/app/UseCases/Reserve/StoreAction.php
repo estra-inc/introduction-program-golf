@@ -7,14 +7,15 @@ namespace App\UseCases\Reserve;
 use App\Enums\ReserveStatus;
 use App\Models\Reserve;
 
+// TODO: ゴルフ場の予約情報も保存できるようにする
 class StoreAction
 {
     public function __invoke(
-        int|string $golfCourseId,
+        int $golfCourseId,
         string $startDate,
         string $name,
         string $email,
-        int|string $personCount
+        int $personCount
     ): void {
         Reserve::create([
             'golf_course_id' => $golfCourseId,

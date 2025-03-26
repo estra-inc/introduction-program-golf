@@ -19,7 +19,7 @@ class ReserveController extends Controller
 {
     public function index(IndexRequest $request, IndexAction $action): IndexResource
     {
-        return new IndexResource($action($request->page, $request->limit));
+        return new IndexResource($action((int)$request->page, (int)$request->limit));
     }
 
     public function show(Reserve $reserve, ShowAction $action): ShowResource
@@ -30,11 +30,11 @@ class ReserveController extends Controller
     public function store(StoreRequest $request, StoreAction $action): void
     {
         $action(
-            $request->golf_course_id,
+            (int)$request->golf_course_id,
             $request->start_date,
             $request->name,
             $request->email,
-            $request->person_count,
+            (int)$request->person_count,
         );
     }
 
