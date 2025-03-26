@@ -12,9 +12,13 @@ import { Reserve } from "../types";
 
 type ReserveListTableProps = {
   reserves: Reserve[];
+  onRowClick: (reserve: Reserve) => void;
 };
 
-export default function ReserveListTable({ reserves }: ReserveListTableProps) {
+export default function ReserveListTable({
+  reserves,
+  onRowClick,
+}: ReserveListTableProps) {
   return (
     <Table aria-label="Example static collection table">
       <TableHeader>
@@ -26,7 +30,7 @@ export default function ReserveListTable({ reserves }: ReserveListTableProps) {
       </TableHeader>
       <TableBody>
         {reserves.map((reserve) => (
-          <TableRow key={reserve.id}>
+          <TableRow key={reserve.id} onClick={() => onRowClick(reserve)}>
             <TableCell>{reserve.name}</TableCell>
             <TableCell>{reserve.golfCourseName}</TableCell>
             <TableCell>{reserve.email}</TableCell>
