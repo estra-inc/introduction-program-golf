@@ -11,6 +11,7 @@ use Tests\TestCase;
 use Tests\Traits\UsesRakutenGoraMockTrait;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+// FIXME: ゴルフ場の予約情報の構造が変わり次第修正
 class ShowActionTest extends TestCase
 {
     use RefreshDatabase;
@@ -23,7 +24,7 @@ class ShowActionTest extends TestCase
     {
         parent::setUp();
         $this->setUpRakutenGoraMock();
-        $this->showAction = app()->make(ShowAction::class);
+        $this->showAction = new ShowAction($this->rakutenGoraService);
         $this->rakutenGoraMock = app()->make(RakutenGoraServiceInterface::class);
     }
 
