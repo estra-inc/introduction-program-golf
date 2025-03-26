@@ -34,6 +34,6 @@ class GolfCourseController extends Controller
      */
     public function show(string $golfCourseId, ShowAction $action): ShowResource
     {
-        return new ShowResource($action($golfCourseId));
+        return new ShowResource($action((int)$golfCourseId));
     }
 }
