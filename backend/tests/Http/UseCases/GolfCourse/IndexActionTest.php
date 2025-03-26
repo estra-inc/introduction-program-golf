@@ -5,22 +5,22 @@ declare(strict_types=1);
 namespace Tests\Http\UseCases\GolfCourse;
 
 use App\Services\RakutenGora\Exceptions\RequiredParameterMissingException;
+use App\Services\RakutenGora\RakutenGoraService;
 use App\UseCases\GolfCourse\IndexAction;
 use Database\Factories\GolfCourseFactory;
-use Tests\Traits\UsesRakutenGoraMockTrait;
 use Tests\TestCase;
+use Mockery;
 
 class IndexActionTest extends TestCase
 {
-    use UsesRakutenGoraMockTrait;
-
     private IndexAction $indexAction;
+    private RakutenGoraService $rakutenGoraService;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->setUpRakutenGoraMock();
-        $this->indexAction = app()->make(IndexAction::class);
+        $this->rakutenGoraService = Mockery::mock(RakutenGoraService::class);
+        $this->indexAction = new IndexAction($this->rakutenGoraService);
     }
 
     /**
@@ -146,6 +146,12 @@ class IndexActionTest extends TestCase
      */
     public function 検索条件が指定されていない場合は例外が発生すること(): void
     {
+        $this->rakutenGoraService
+            ->shouldReceive('searchGolfCourses')
+            ->with(1, null, null, null, null)
+            ->once()
+            ->andThrow(new RequiredParameterMissingException());
+
         $this->expectException(RequiredParameterMissingException::class);
 
         ($this->indexAction)();
