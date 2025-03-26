@@ -1,4 +1,4 @@
-import { TitleWithSubText } from "../elements/TitleWithSubText";
+import TitleWithSubText from "@/components/elements/TitleWithSubText";
 
 type MainTemplateProps = {
   title: string;

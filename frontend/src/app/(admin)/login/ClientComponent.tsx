@@ -8,7 +8,7 @@ export default function ClientComponent() {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <LoginForm onSuccess={() => router.push("/")} />
+      <LoginForm onSuccess={() => router.push("/reserves")} />
     </div>
   );
 }

@@ -3,7 +3,10 @@ export type TitleWithSubTextProps = {
   subText: string;
 };
 
-export function TitleWithSubText({ title, subText }: TitleWithSubTextProps) {
+export default function TitleWithSubText({
+  title,
+  subText,
+}: TitleWithSubTextProps) {
   return (
     <div>
       <h1 className="text-4xl font-bold">{title}</h1>
