@@ -14,13 +14,13 @@ type CourseCardProps = {
 
 export default function CourseCard({ golfCourse }: CourseCardProps) {
   return (
-    <Card isPressable>
+    <Card isPressable className="w-full">
       <CardBody>
         <div className="grid grid-cols-3 gap-4">
           <div className="col-span-1">
             <Image
               alt="ゴルフ場"
-              src={golfCourse.golfCourseImageUrl}
+              src={golfCourse.golfCourseImageUrl || "/assets/no-image.jpg"}
               className="object-cover"
               height={200}
               width="100%"

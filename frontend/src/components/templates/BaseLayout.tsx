@@ -1,4 +1,4 @@
-import AccountSidebar from "../elements/sidebar/AccountSidebar";
+import AccountSidebar from "../elements/sidebars/AccountSidebar";
 
 export default function BaseLayout({
   children,

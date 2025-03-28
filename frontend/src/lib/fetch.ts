@@ -14,18 +14,24 @@ async function fetchCsrfToken() {
   });
 }
 
-export type HttpOptions<T> = {
+type BaseHttpOptions<HttpResponse = unknown> = {
   method: string;
   body?: Record<string, unknown>;
+  query?: Record<string, unknown>;
   headers?: Record<string, string>;
   callbacks?: {
-    onSuccess?: (data: T | null) => void;
+    onSuccess?: (data: HttpResponse | null) => void;
     onError?: (error: Error) => void;
     onAuthError?: () => void;
   };
 };
 
-export async function http<T>(url: string, options: HttpOptions<T>) {
+export type HttpOptions = Omit<BaseHttpOptions, "method">;
+
+export async function http<HttpResponse = null>(
+  url: string,
+  options: BaseHttpOptions<Response>
+): Promise<HttpResponse> {
   const { onSuccess, onError, onAuthError } = options.callbacks || {};
 
   const baseUrl = isServerSide
@@ -71,7 +77,8 @@ export async function http<T>(url: string, options: HttpOptions<T>) {
     }
   }
 
-  const response = await fetch(endpoint, {
+  const query = getQueryString(options);
+  const response = await fetch(endpoint + query, {
     credentials: "include",
     headers: options.headers,
     method: options.method,
@@ -93,7 +100,7 @@ export async function http<T>(url: string, options: HttpOptions<T>) {
       }
     } else {
       // 5xx系のエラーが発生 or 応答がなかった or リクエスト送信前にエラーが発生した場合
-      console.error("API Error:", errorBody);
+      console.error("API Error:", JSON.parse(errorBody));
       if (isServerSide) {
         throw new Error("API Error");
       } else {
@@ -108,20 +115,23 @@ export async function http<T>(url: string, options: HttpOptions<T>) {
   } else {
     if (response.status === 204) {
       onSuccess?.(null);
-      return null;
+      return null as HttpResponse;
     }
 
     try {
       // MEMO: responseが存在しない場合, .jsonでエラーが発生するため, try-catchで処理
       // ステータスコードを明示的に204で返すか検討
       const resolvedResponse = await response.json();
-      onSuccess?.(resolvedResponse);
-      return resolvedResponse;
+      const data = resolvedResponse.data;
+      onSuccess?.(data);
+      return data;
     } catch (error) {
       console.log("Invalid JSON response", error);
-      return null;
+      return null as HttpResponse;
     }
   }
+
+  return null as HttpResponse;
 }
 
 async function handleError() {
@@ -131,4 +141,18 @@ async function handleError() {
     description: "エラーが発生しました",
     color: "danger",
   });
+}
+
+function getQueryString(options: Pick<HttpOptions, "query">): string {
+  const params = Object.entries(options.query || {}).reduce(
+    (acc, [key, value]) => {
+      if (value !== undefined) {
+        acc[key] = String(value);
+      }
+      return acc;
+    },
+    {} as Record<string, string>
+  );
+
+  return params ? `?${new URLSearchParams(params).toString()}` : "";
 }

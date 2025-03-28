@@ -1,4 +1,4 @@
-import Sidebar from "@/components/elements/sidebar/Sidebar";
+import Sidebar from "@/components/elements/sidebars/Sidebar";
 import fetchMe from "@/features/auth/components/api/fetchMe";
 import { AccountType } from "@/types";
 

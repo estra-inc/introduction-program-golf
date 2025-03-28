@@ -12,23 +12,27 @@ export default async function Page({
   const keywordString = typeof keyword === "string" ? keyword : undefined;
   const pageString = typeof page === "string" ? page : "1";
 
-  const golfCourses = await searchGolfCourses({
-    area: areaString,
-    keyword: keywordString,
-    page: pageString,
+  const data = await searchGolfCourses({
+    query: {
+      area: areaString ? Number(areaString) : undefined,
+      keyword: keywordString ?? "",
+      page: pageString ? Number(pageString) : 1,
+    },
   });
+
+  console.log(data);
 
   return (
     <>
       <MainTemplate title="ゴルフ場 検索" subText="search golf courses">
         <ClientComponent
-          golfCourses={golfCourses.Items}
+          golfCourses={data.Items}
           query={{
             area: areaString ? Number(areaString) : undefined,
             keyword: keywordString ?? "",
             page: pageString ? Number(pageString) : 1,
           }}
-          lastPage={golfCourses.last}
+          lastPage={data.last}
         />
       </MainTemplate>
     </>

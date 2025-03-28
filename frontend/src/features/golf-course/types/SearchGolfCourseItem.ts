@@ -4,13 +4,13 @@ export type SearchGolfCourseItem = {
   golfCourseAbbr: string;
   golfCourseNameKana: string;
   golfCourseCaption: string;
+  golfCourseImageUrl: string | "";
+  golfCourseDetailUrl: string;
   address: string;
   latitude: number;
   longitude: number;
   highway: string;
-  golfCourseDetailUrl: string;
   reserveCalUrl: string;
   ratingUrl: string;
-  golfCourseImageUrl: string;
   evaluation: number;
 };
