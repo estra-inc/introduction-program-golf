@@ -1,10 +1,15 @@
 import Sidebar from "@/components/elements/sidebar/Sidebar";
+import fetchMe from "@/features/auth/components/api/fetchMe";
 import { AccountType } from "@/types";
 
-export default function AccountSidebar() {
+export default async function AccountSidebar() {
   // TODO: ログインしているユーザーのアカウントタイプを取得
-  const accountType: AccountType = AccountType.ADMIN;
+  let accountType: AccountType = AccountType.GUEST;
   // const accountType: AccountType = AccountType.GUEST;
+  const { data } = await fetchMe();
+  if (data) {
+    accountType = AccountType.ADMIN;
+  }
 
   const guest = [
     { label: "ゴルフ場一覧", href: "/golf-courses" },
