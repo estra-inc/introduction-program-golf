@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/elements/Button";
-import { Select } from "@/components/elements/form";
+import { Select } from "@/components/elements/forms";
 import { addToast } from "@heroui/react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

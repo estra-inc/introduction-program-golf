@@ -1,7 +1,7 @@
 "use client";
 
-import { Input } from "@/components/elements/form";
-import { Select } from "@/components/elements/form";
+import { Input } from "@/components/elements/forms";
+import { Select } from "@/components/elements/forms";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import yup from "@/lib/yup";
