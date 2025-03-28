@@ -19,8 +19,8 @@ type SearchGolfCoursesHttpDocument = {
 } & HttpDocument<ResponseBody>;
 
 export const searchGolfCourses = async (
-  params: SearchGolfCoursesHttpDocument["params"],
-  options: SearchGolfCoursesHttpDocument["options"]
+  params?: SearchGolfCoursesHttpDocument["params"],
+  options?: SearchGolfCoursesHttpDocument["options"]
 ) => {
   return await http<SearchGolfCoursesHttpDocument, ResponseBody>(
     "/api/golf-courses",

@@ -7,6 +7,6 @@ type FetchMeResponse = {
 
 type FetchMeDocument = HttpDocument<FetchMeResponse>;
 
-export default function fetchMe() {
-  return http<FetchMeDocument, FetchMeResponse>("/api/me", "GET");
+export default function fetchMe(options?: FetchMeDocument["options"]) {
+  return http<FetchMeDocument, FetchMeResponse>("/api/me", "GET", {}, options);
 }
