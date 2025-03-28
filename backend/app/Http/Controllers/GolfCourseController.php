@@ -20,11 +20,11 @@ class GolfCourseController extends Controller
     {
         return new IndexResource(
             $action(
-                $request->page ?? 1,
-                $request->keyword,
-                $request->areaCode,
-                $request->latitude,
-                $request->longitude
+                (int)($request->page ?? 1),
+                $request->keyword ?? null,
+                (int)($request->areaCode ?? 13),
+                (float)($request->latitude ?? null),
+                (float)($request->longitude ?? null)
             )
         );
     }
