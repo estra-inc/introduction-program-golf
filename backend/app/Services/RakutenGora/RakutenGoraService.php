@@ -45,7 +45,12 @@ class RakutenGoraService implements RakutenGoraServiceInterface
             $params['longitude'] = $longitude;
         }
 
+
         $response = Http::get(self::BASE_ENDPOINT . '/GoraGolfCourseSearch/20170623', $params);
+
+        if (isset($response->json()['error'])) {
+            throw new \Exception($response->json()['error_description']);
+        }
 
         return $response->json();
     }

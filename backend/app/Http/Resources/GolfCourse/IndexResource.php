@@ -11,12 +11,7 @@ class IndexResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'count' => $this['count'],
             'page' => $this['page'],
-            'first' => $this['first'],
-            'last' => $this['last'],
-            'hits' => $this['hits'],
-            'carrier' => $this['carrier'],
             'pageCount' => $this['pageCount'],
             'Items' => array_map(function ($item) {
                 return [
