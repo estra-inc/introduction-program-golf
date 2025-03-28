@@ -1,15 +1,21 @@
 "use client";
 
+import logout from "@/features/auth/components/api/logout";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type SidebarProps = {
   links: {
     label: string;
     href: string;
+    onClick?: () => void;
   }[];
+  canLogout?: boolean;
 };
 
-export default function Sidebar({ links }: SidebarProps) {
+export default function Sidebar({ links, canLogout = false }: SidebarProps) {
+  const router = useRouter();
+
   return (
     <>
       <div className="w-80 bg-green-400 p-4 pt-16 h-full fixed top-0 left-0">
@@ -23,6 +29,17 @@ export default function Sidebar({ links }: SidebarProps) {
               {link.label}
             </Link>
           ))}
+          {canLogout && (
+            <button
+              onClick={() => {
+                logout();
+                router.push("/login");
+              }}
+              className="text-white text-xl font-bold mr-auto"
+            >
+              ログアウト
+            </button>
+          )}
         </div>
       </div>
     </>
