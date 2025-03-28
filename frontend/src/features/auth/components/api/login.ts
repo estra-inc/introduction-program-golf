@@ -1,8 +1,11 @@
-import { http } from "@/lib/fetch";
+import { http, HttpDocument } from "@/lib/fetch";
 
-export default function login(email: string, password: string) {
-  return http("/api/login", {
-    method: "POST",
-    body: { email, password },
-  });
+type LoginHttpDocument = {
+  params: {
+    requestBody: { email: string; password: string };
+  };
+} & HttpDocument;
+
+export default function login(params: LoginHttpDocument["params"]) {
+  return http<LoginHttpDocument>("/api/login", "POST", params);
 }

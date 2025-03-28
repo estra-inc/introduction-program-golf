@@ -1,22 +1,31 @@
-import { http, HttpOptions } from "@/lib/fetch";
+import { http, HttpDocument } from "@/lib/fetch";
 import { SearchGolfCourseItem } from "../types/SearchGolfCourseItem";
 
-type Query = {
-  area?: number;
+type QueryParams = {
+  areaCode?: number;
   keyword?: string;
   page?: number;
 };
 
-type Response = {
+type ResponseBody = {
   Items: SearchGolfCourseItem[];
-  last: number;
+  pageCount: number;
 };
 
+type SearchGolfCoursesHttpDocument = {
+  params: {
+    queryParams: QueryParams;
+  };
+} & HttpDocument<ResponseBody>;
+
 export const searchGolfCourses = async (
-  options: HttpOptions & { query: Query }
+  params: SearchGolfCoursesHttpDocument["params"],
+  options: SearchGolfCoursesHttpDocument["options"]
 ) => {
-  return await http<Response>("/api/golf-courses", {
-    method: "GET",
-    ...options,
-  });
+  return await http<SearchGolfCoursesHttpDocument, ResponseBody>(
+    "/api/golf-courses",
+    "GET",
+    params,
+    options
+  );
 };

@@ -1,11 +1,12 @@
-import { http, HttpOptions } from "@/lib/fetch";
+import { http, HttpDocument } from "@/lib/fetch";
 
-export default function fetchMe(options?: HttpOptions) {
-  return http<{
-    name: string;
-    email: string;
-  }>("/api/me", {
-    method: "GET",
-    ...options,
-  });
+type FetchMeResponse = {
+  name: string;
+  email: string;
+};
+
+type FetchMeDocument = HttpDocument<FetchMeResponse>;
+
+export default function fetchMe() {
+  return http<FetchMeDocument, FetchMeResponse>("/api/me", "GET");
 }

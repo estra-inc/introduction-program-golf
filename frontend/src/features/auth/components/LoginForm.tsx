@@ -31,9 +31,12 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
   });
 
   const onSubmit = (data: LoginFormData) => {
-    login(data.email, data.password).then(() => {
-      onSuccess();
-    });
+    login({
+      requestBody: {
+        email: data.email,
+        password: data.password,
+      },
+    }).then(() => onSuccess());
   };
 
   return (
