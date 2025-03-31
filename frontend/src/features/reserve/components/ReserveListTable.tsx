@@ -46,16 +46,18 @@ export default function ReserveListTable({
           <TableRow
             key={reserve.id}
             onClick={() => onRowClick(reserve)}
-            className="cursor-pointer"
+            className="cursor-pointer rounded-md hover:bg-gray-100"
           >
-            <TableCell>{reserve.guest_name}</TableCell>
+            <TableCell className="rounded-s-lg">{reserve.guest_name}</TableCell>
             <TableCell>
               {dayjs(reserve.start_date).format("YYYY年MM月DD日")}
             </TableCell>
             <TableCell>{reserve.golf_course_name}</TableCell>
             <TableCell>{reserve.person_count}</TableCell>
             <TableCell>{reserve.guest_email}</TableCell>
-            <TableCell>{reserve.status.name}</TableCell>
+            <TableCell className="rounded-e-lg">
+              {reserve.status.name}
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
