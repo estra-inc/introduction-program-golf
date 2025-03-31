@@ -24,7 +24,7 @@ class GolfCourseController extends Controller
                 $request->keyword ?? null,
                 (int)($request->areaCode ?? null),
                 (float)($request->latitude ?? null),
-                (float)($request->longitude ?? null)
+                (float)($request->longitude ?? null),
             )
         );
     }

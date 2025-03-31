@@ -16,7 +16,7 @@ const reserveSchema = yup.object().shape({
 type ReserveFormData = yup.InferType<typeof reserveSchema>;
 
 type ReserveUpdateFormProps = {
-  reserve: Reserve;
+  reserve: Pick<Reserve, "status">;
 };
 
 export default function ReserveUpdateForm({ reserve }: ReserveUpdateFormProps) {

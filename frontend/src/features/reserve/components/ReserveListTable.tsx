@@ -24,17 +24,17 @@ export default function ReserveListTable({
       <TableHeader>
         <TableColumn>予約者名</TableColumn>
         <TableColumn>ゴルフ場名</TableColumn>
+        <TableColumn>予約人数</TableColumn>
         <TableColumn>メールアドレス</TableColumn>
-        <TableColumn>人数</TableColumn>
         <TableColumn>ステータス</TableColumn>
       </TableHeader>
       <TableBody>
         {reserves.map((reserve) => (
           <TableRow key={reserve.id} onClick={() => onRowClick(reserve)}>
-            <TableCell>{reserve.name}</TableCell>
+            <TableCell>{reserve.guestName}</TableCell>
             <TableCell>{reserve.golfCourseName}</TableCell>
-            <TableCell>{reserve.email}</TableCell>
             <TableCell>{reserve.personCount}</TableCell>
+            <TableCell>{reserve.guestEmail}</TableCell>
             <TableCell>{reserve.status.name}</TableCell>
           </TableRow>
         ))}

@@ -17,6 +17,12 @@ class Reserve extends Model
         'guest_email',
         'person_count',
         'status_id',
+        'golf_course_name',
+        'golf_course_image_url1',
+        'golf_course_image_url2',
+        'golf_course_image_url3',
+        'golf_course_image_url4',
+        'golf_course_image_url5',
     ];
 
     protected $casts = [

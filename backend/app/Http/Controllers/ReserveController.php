@@ -35,6 +35,12 @@ class ReserveController extends Controller
             $request->guest_name,
             $request->guest_email,
             (int)$request->person_count,
+            $request->golf_course_name,
+            $request->golf_course_image_url1,
+            $request->golf_course_image_url2,
+            $request->golf_course_image_url3,
+            $request->golf_course_image_url4,
+            $request->golf_course_image_url5,
         );
     }
 

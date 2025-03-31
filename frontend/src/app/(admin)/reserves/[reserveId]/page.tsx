@@ -38,9 +38,17 @@ export default async function Page({
             <h1 className="text-3xl font-bold">{reserve.golfCourseName}</h1>
 
             <div>
-              <h2 className="text-2xl font-bold">予約者名: {reserve.name}</h2>
+              <h2 className="text-2xl font-bold">
+                予約者名: {reserve.guestName}
+              </h2>
               <h2 className="text-2xl font-bold">
                 人数: {reserve.personCount}
+              </h2>
+              <h2 className="text-2xl font-bold">
+                予約日: {reserve.startDate}
+              </h2>
+              <h2 className="text-2xl font-bold">
+                予約者メールアドレス: {reserve.guestEmail}
               </h2>
             </div>
 

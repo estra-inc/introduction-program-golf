@@ -14,16 +14,37 @@ import useDisclosure from "@/hooks/useDisclosure";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import yup from "@/lib/yup";
+import createReserve from "@/features/reserve/api/createReserve";
 
 const reserveSchema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup.string().email().required(),
-  numberOfPeople: yup.number().required(),
+  guestName: yup.string().required(),
+  guestEmail: yup.string().email().required(),
+  personCount: yup.number().required(),
+  startDate: yup.string().required(),
+  golfCourseName: yup.string().required(),
+  golfCourseImageUrl1: yup.string().required(),
+  golfCourseImageUrl2: yup.string().required(),
+  golfCourseImageUrl3: yup.string().required(),
+  golfCourseImageUrl4: yup.string().required(),
+  golfCourseImageUrl5: yup.string().required(),
 });
 
 type ReserveFormData = yup.InferType<typeof reserveSchema>;
 
-export default function GolfCourseReserveFormModal() {
+type GolfCourseReserveFormModalProps = {
+  golfCourse: {
+    golfCourseName: string;
+    golfCourseImageUrl1: string;
+    golfCourseImageUrl2: string;
+    golfCourseImageUrl3: string;
+    golfCourseImageUrl4: string;
+    golfCourseImageUrl5: string;
+  };
+};
+
+export default function GolfCourseReserveFormModal({
+  golfCourse,
+}: GolfCourseReserveFormModalProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     register,
@@ -32,11 +53,36 @@ export default function GolfCourseReserveFormModal() {
     reset,
   } = useForm<ReserveFormData>({
     resolver: yupResolver(reserveSchema),
+    defaultValues: {
+      startDate: undefined,
+      guestName: "",
+      guestEmail: "",
+      personCount: undefined,
+      golfCourseName: golfCourse.golfCourseName,
+      golfCourseImageUrl1: golfCourse.golfCourseImageUrl1,
+      golfCourseImageUrl2: golfCourse.golfCourseImageUrl2,
+      golfCourseImageUrl3: golfCourse.golfCourseImageUrl3,
+      golfCourseImageUrl4: golfCourse.golfCourseImageUrl4,
+      golfCourseImageUrl5: golfCourse.golfCourseImageUrl5,
+    },
   });
 
-  const onSubmit = (data: ReserveFormData) => {
-    // TODO: 予約処理
+  const onSubmit = async (data: ReserveFormData) => {
     console.log(data);
+    await createReserve({
+      requestBody: {
+        start_date: data.startDate,
+        guest_name: data.guestName,
+        guest_email: data.guestEmail,
+        person_count: data.personCount,
+        golf_course_name: data.golfCourseName,
+        golf_course_image_url1: data.golfCourseImageUrl1,
+        golf_course_image_url2: data.golfCourseImageUrl2,
+        golf_course_image_url3: data.golfCourseImageUrl3,
+        golf_course_image_url4: data.golfCourseImageUrl4,
+        golf_course_image_url5: data.golfCourseImageUrl5,
+      },
+    });
 
     addToast({
       title: "予約完了",
@@ -59,23 +105,30 @@ export default function GolfCourseReserveFormModal() {
                 <div className="flex flex-col gap-4">
                   <Input
                     label="お名前"
-                    {...register("name")}
-                    errorMessage={errors.name?.message}
-                    isInvalid={!!errors.name}
+                    {...register("guestName")}
+                    errorMessage={errors.guestName?.message}
+                    isInvalid={!!errors.guestName}
                   />
                   <Input
                     label="メールアドレス"
                     type="email"
-                    {...register("email")}
-                    errorMessage={errors.email?.message}
-                    isInvalid={!!errors.email}
+                    {...register("guestEmail")}
+                    errorMessage={errors.guestEmail?.message}
+                    isInvalid={!!errors.guestEmail}
                   />
                   <Input
                     label="人数"
                     type="number"
-                    {...register("numberOfPeople")}
-                    errorMessage={errors.numberOfPeople?.message}
-                    isInvalid={!!errors.numberOfPeople}
+                    {...register("personCount")}
+                    errorMessage={errors.personCount?.message}
+                    isInvalid={!!errors.personCount}
+                  />
+                  <Input
+                    label="予約日"
+                    type="date"
+                    {...register("startDate")}
+                    errorMessage={errors.startDate?.message}
+                    isInvalid={!!errors.startDate}
                   />
                 </div>
               </ModalBody>

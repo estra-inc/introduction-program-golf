@@ -19,6 +19,12 @@ return new class extends Migration
             $table->string('guest_email');
             $table->unsignedInteger('status_id');
             $table->unsignedInteger('person_count');
+            $table->string('golf_course_name');
+            $table->string('golf_course_image_url1');
+            $table->string('golf_course_image_url2');
+            $table->string('golf_course_image_url3');
+            $table->string('golf_course_image_url4');
+            $table->string('golf_course_image_url5');
             $table->timestamps();
         });
     }
