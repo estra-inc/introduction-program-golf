@@ -81,7 +81,7 @@ export default async function Page({
       </div>
 
       {/* ゴルフ場画像リスト */}
-      <h2 className="text-2xl">ゴルフ場画像</h2>
+      <h2 className="text-2xl font-bold">ゴルフ場画像</h2>
       <div className="flex gap-10 overflow-x-auto">
         {sourceImages.map((image, index) => (
           <Image
