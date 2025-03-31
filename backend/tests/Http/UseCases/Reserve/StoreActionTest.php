@@ -31,6 +31,12 @@ class StoreActionTest extends TestCase
         $guestName = 'テスト太郎';
         $guestEmail = 'test@example.com';
         $personCount = 4;
+        $golfCourseName = 'テストゴルフ場';
+        $golfCourseImageUrl1 = 'https://example.com/image1.jpg';
+        $golfCourseImageUrl2 = 'https://example.com/image2.jpg';
+        $golfCourseImageUrl3 = 'https://example.com/image3.jpg';
+        $golfCourseImageUrl4 = 'https://example.com/image4.jpg';
+        $golfCourseImageUrl5 = 'https://example.com/image5.jpg';
 
         // 実行
         ($this->storeAction)(
@@ -38,7 +44,13 @@ class StoreActionTest extends TestCase
             $startDate,
             $guestName,
             $guestEmail,
-            $personCount
+            $personCount,
+            $golfCourseName,
+            $golfCourseImageUrl1,
+            $golfCourseImageUrl2,
+            $golfCourseImageUrl3,
+            $golfCourseImageUrl4,
+            $golfCourseImageUrl5
         );
 
         // 検証
@@ -49,6 +61,12 @@ class StoreActionTest extends TestCase
             'guest_email' => $guestEmail,
             'person_count' => $personCount,
             'status_id' => 1,
+            'golf_course_name' => $golfCourseName,
+            'golf_course_image_url1' => $golfCourseImageUrl1,
+            'golf_course_image_url2' => $golfCourseImageUrl2,
+            'golf_course_image_url3' => $golfCourseImageUrl3,
+            'golf_course_image_url4' => $golfCourseImageUrl4,
+            'golf_course_image_url5' => $golfCourseImageUrl5,
         ]);
     }
 }
