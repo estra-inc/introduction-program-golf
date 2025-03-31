@@ -31,7 +31,6 @@ export default function ReserveListTable({
   reserves,
   onRowClick,
 }: ReserveListTableProps) {
-  console.log(reserves);
   return (
     <Table aria-label="Example static collection table">
       <TableHeader>
@@ -44,7 +43,11 @@ export default function ReserveListTable({
       </TableHeader>
       <TableBody>
         {reserves.map((reserve) => (
-          <TableRow key={reserve.id} onClick={() => onRowClick(reserve)}>
+          <TableRow
+            key={reserve.id}
+            onClick={() => onRowClick(reserve)}
+            className="cursor-pointer"
+          >
             <TableCell>{reserve.guest_name}</TableCell>
             <TableCell>
               {dayjs(reserve.start_date).format("YYYY年MM月DD日")}
