@@ -10,8 +10,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class IndexAction
 {
     public function __invoke(
-        int|string $page = 1,
-        int|string $limit = 10,
+        int $page = 1,
+        int $limit = 50,
     ): LengthAwarePaginator
     {
         return Reserve::query()

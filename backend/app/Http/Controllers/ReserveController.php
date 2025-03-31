@@ -19,7 +19,17 @@ class ReserveController extends Controller
 {
     public function index(IndexRequest $request, IndexAction $action): IndexResource
     {
-        return new IndexResource($action((int)$request->page, (int)$request->limit));
+        $args = [];
+
+        if(isset($request->page)) {
+            $args['page'] = (int)$request->page;
+        }
+
+        if(isset($request->limit)) {
+            $args['limit'] = (int)$request->limit;
+        }
+
+        return new IndexResource($action(...$args));
     }
 
     public function show(Reserve $reserve, ShowAction $action): ShowResource

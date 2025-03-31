@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Spinner,
   Table,
   TableBody,
   TableCell,
@@ -8,8 +9,12 @@ import {
   TableHeader,
   TableRow,
 } from "@heroui/react";
-import { Reserve } from "../types";
+import { useInfiniteScroll } from "@heroui/use-infinite-scroll";
+import { useAsyncList } from "@react-stately/data";
 import dayjs from "@/lib/dayjs";
+import { useState } from "react";
+import fetchReserves from "@/features/reserve/api/fetchReserves";
+import { Reserve } from "@/features/reserve/types";
 
 type ReserveListItem = Pick<
   Reserve,
@@ -23,16 +28,55 @@ type ReserveListItem = Pick<
 >;
 
 type ReserveListTableProps = {
-  reserves: ReserveListItem[];
   onRowClick: (reserve: ReserveListItem) => void;
+  className?: string;
 };
 
 export default function ReserveListTable({
-  reserves,
   onRowClick,
+  className,
 }: ReserveListTableProps) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
+
+  const list = useAsyncList({
+    async load({ cursor = "1" }) {
+      if (cursor) {
+        setIsLoading(false);
+      }
+
+      const { data: response, meta } = await fetchReserves({
+        queryParams: { page: cursor ? parseInt(cursor) : 1 },
+      });
+
+      setHasMore(meta.last_page !== meta.current_page);
+
+      return {
+        items: response,
+        cursor: String(cursor ? parseInt(cursor) + 1 : 1),
+      };
+    },
+  });
+
+  const [loaderRef, scrollerRef] = useInfiniteScroll({
+    hasMore,
+    onLoadMore: list.loadMore,
+  });
+
   return (
-    <Table aria-label="Example static collection table">
+    <Table
+      aria-label="Example static collection table"
+      baseRef={scrollerRef}
+      isHeaderSticky
+      bottomContent={
+        hasMore ? (
+          <div className="flex w-full justify-center">
+            <Spinner ref={loaderRef} />
+          </div>
+        ) : null
+      }
+      className={className}
+    >
       <TableHeader>
         <TableColumn>予約者名</TableColumn>
         <TableColumn>予約日</TableColumn>
@@ -41,25 +85,29 @@ export default function ReserveListTable({
         <TableColumn>メールアドレス</TableColumn>
         <TableColumn>ステータス</TableColumn>
       </TableHeader>
-      <TableBody>
-        {reserves.map((reserve) => (
-          <TableRow
-            key={reserve.id}
-            onClick={() => onRowClick(reserve)}
-            className="cursor-pointer rounded-md hover:bg-gray-100"
-          >
-            <TableCell className="rounded-s-lg">{reserve.guest_name}</TableCell>
-            <TableCell>
-              {dayjs(reserve.start_date).format("YYYY年MM月DD日")}
-            </TableCell>
-            <TableCell>{reserve.golf_course_name}</TableCell>
-            <TableCell>{reserve.person_count}</TableCell>
-            <TableCell>{reserve.guest_email}</TableCell>
-            <TableCell className="rounded-e-lg">
-              {reserve.status.name}
-            </TableCell>
-          </TableRow>
-        ))}
+      <TableBody
+        isLoading={isLoading}
+        items={list.items as ReserveListItem[]}
+        loadingContent={<Spinner />}
+      >
+        {(item: ReserveListItem) => {
+          return (
+            <TableRow
+              key={item.id}
+              onClick={() => onRowClick(item)}
+              className="cursor-pointer rounded-md hover:bg-gray-100"
+            >
+              <TableCell className="rounded-s-lg">{item.guest_name}</TableCell>
+              <TableCell>
+                {dayjs(item.start_date).format("YYYY年MM月DD日")}
+              </TableCell>
+              <TableCell>{item.golf_course_name}</TableCell>
+              <TableCell>{item.person_count}</TableCell>
+              <TableCell>{item.guest_email}</TableCell>
+              <TableCell className="rounded-e-lg">{item.status.name}</TableCell>
+            </TableRow>
+          );
+        }}
       </TableBody>
     </Table>
   );

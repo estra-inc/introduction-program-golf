@@ -1,5 +1,5 @@
 export type Reserve = {
-  id: number;
+  id: string;
   start_date: string;
   guest_name: string;
   guest_email: string;
