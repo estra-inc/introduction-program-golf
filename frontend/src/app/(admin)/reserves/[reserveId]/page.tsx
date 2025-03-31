@@ -9,7 +9,7 @@ export default async function Page({
 }: {
   params: { reserveId: string };
 }) {
-  const reserveId = params.reserveId;
+  const { reserveId } = await params;
 
   const reserve = await fetchReserve({
     pathParams: {
