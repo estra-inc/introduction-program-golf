@@ -68,7 +68,6 @@ export default function GolfCourseReserveFormModal({
   });
 
   const onSubmit = async (data: ReserveFormData) => {
-    console.log(data);
     await createReserve({
       requestBody: {
         start_date: data.startDate,
