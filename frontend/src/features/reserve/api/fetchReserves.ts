@@ -1,44 +1,32 @@
-import type { Reserve } from "@/features/reserve/types";
+import type { Reserve as ReserveType } from "@/features/reserve/types";
+import { http, HttpDocument } from "@/lib/fetch";
 
-export default async function fetchReserves(): Promise<Reserve[]> {
-  return [
-    {
-      id: 1,
-      startDate: "2021-01-01",
-      name: "John Doe",
-      email: "john.doe@example.com",
-      personCount: 4,
-      status: {
-        id: 1,
-        name: "Active",
-      },
-      golfCourseImageUrl1: "https://via.placeholder.com/150",
-      golfCourseImageUrl2: "https://via.placeholder.com/150",
-      golfCourseImageUrl3: "https://via.placeholder.com/150",
-      golfCourseImageUrl4: "https://via.placeholder.com/150",
-      golfCourseImageUrl5: "https://via.placeholder.com/150",
-      golfCourseName: "Golf Course Name",
-      evaluation: "5.0",
-      golfCourseCaption: "Golf Course Caption",
-    },
-    {
-      id: 2,
-      startDate: "2021-01-01",
-      name: "John Doe",
-      email: "john.doe@example.com",
-      personCount: 4,
-      status: {
-        id: 1,
-        name: "Active",
-      },
-      golfCourseImageUrl1: "https://via.placeholder.com/150",
-      golfCourseImageUrl2: "https://via.placeholder.com/150",
-      golfCourseImageUrl3: "https://via.placeholder.com/150",
-      golfCourseImageUrl4: "https://via.placeholder.com/150",
-      golfCourseImageUrl5: "https://via.placeholder.com/150",
-      golfCourseName: "Golf Course Name",
-      evaluation: "5.0",
-      golfCourseCaption: "Golf Course Caption",
-    },
-  ];
+type Reserve = Pick<
+  ReserveType,
+  | "id"
+  | "start_date"
+  | "guest_name"
+  | "guest_email"
+  | "person_count"
+  | "status"
+  | "golf_course_name"
+>;
+
+type FetchReservesDocument = HttpDocument<Reserve[]> & {
+  params: {
+    queryParams: {
+      page?: number;
+      limit?: number;
+    };
+  };
+};
+
+export default async function fetchReserves(
+  params?: FetchReservesDocument["params"]
+): Promise<Reserve[]> {
+  return await http<FetchReservesDocument, Reserve[]>(
+    "/api/reserves",
+    "GET",
+    params
+  );
 }

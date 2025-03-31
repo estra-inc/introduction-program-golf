@@ -13,11 +13,11 @@ export default async function Page({
   const reserve = await fetchReserve(Number(reserveId));
 
   const sourceImages = [
-    reserve.golfCourseImageUrl1,
-    reserve.golfCourseImageUrl2,
-    reserve.golfCourseImageUrl3,
-    reserve.golfCourseImageUrl4,
-    reserve.golfCourseImageUrl5,
+    reserve.golf_course_image_url1,
+    reserve.golf_course_image_url2,
+    reserve.golf_course_image_url3,
+    reserve.golf_course_image_url4,
+    reserve.golf_course_image_url5,
   ];
 
   return (
@@ -25,7 +25,7 @@ export default async function Page({
       <div className="grid grid-cols-2 gap-10">
         <div className="col-span-1">
           <Image
-            src={reserve.golfCourseImageUrl1}
+            src={reserve.golf_course_image_url1}
             alt="ゴルフ場"
             className="object-cover"
             width="100%"
@@ -35,20 +35,20 @@ export default async function Page({
 
         <div className="flex flex-col col-span-1 gap-10">
           <div className="flex flex-col gap-10 h-full">
-            <h1 className="text-3xl font-bold">{reserve.golfCourseName}</h1>
+            <h1 className="text-3xl font-bold">{reserve.golf_course_name}</h1>
 
             <div>
               <h2 className="text-2xl font-bold">
-                予約者名: {reserve.guestName}
+                予約者名: {reserve.guest_name}
               </h2>
               <h2 className="text-2xl font-bold">
-                人数: {reserve.personCount}
+                人数: {reserve.person_count}
               </h2>
               <h2 className="text-2xl font-bold">
-                予約日: {reserve.startDate}
+                予約日: {reserve.start_date}
               </h2>
               <h2 className="text-2xl font-bold">
-                予約者メールアドレス: {reserve.guestEmail}
+                予約者メールアドレス: {reserve.guest_email}
               </h2>
             </div>
 

@@ -1,19 +1,17 @@
 export type Reserve = {
   id: number;
-  startDate: string;
-  guestName: string;
-  guestEmail: string;
-  personCount: number;
+  start_date: string;
+  guest_name: string;
+  guest_email: string;
+  person_count: number;
   status: {
     id: number;
     name: string;
   };
-  golfCourseImageUrl1: string;
-  golfCourseImageUrl2: string;
-  golfCourseImageUrl3: string;
-  golfCourseImageUrl4: string;
-  golfCourseImageUrl5: string;
-  golfCourseName: string;
-  evaluation: string;
-  golfCourseCaption: string;
+  golf_course_image_url1: string;
+  golf_course_image_url2: string;
+  golf_course_image_url3: string;
+  golf_course_image_url4: string;
+  golf_course_image_url5: string;
+  golf_course_name: string;
 };

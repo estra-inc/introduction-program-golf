@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\Reserve;
 
+use App\Enums\ReserveStatus;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ShowResource extends JsonResource
@@ -14,10 +15,19 @@ class ShowResource extends JsonResource
             'id' => $this->id,
             'golf_course_id' => $this->golf_course_id,
             'start_date' => $this->start_date,
-            'name' => $this->name,
-            'email' => $this->email,
+            'guest_name' => $this->guest_name,
+            'guest_email' => $this->guest_email,
             'person_count' => $this->person_count,
-            'golf_course' => $this->golf_course,
+            'status' => [
+                'id' => $this->status_id,
+                'name' => ReserveStatus::getLabel($this->status_id),
+            ],
+            'golf_course_name' => $this->golf_course_name,
+            'golf_course_image_url1' => $this->golf_course_image_url1,
+            'golf_course_image_url2' => $this->golf_course_image_url2,
+            'golf_course_image_url3' => $this->golf_course_image_url3,
+            'golf_course_image_url4' => $this->golf_course_image_url4,
+            'golf_course_image_url5' => $this->golf_course_image_url5,
         ];
     }
 }
