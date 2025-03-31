@@ -27,12 +27,17 @@ class ReserveFactory extends Factory
     public function definition(): array
     {
         return [
-            'golf_course_id' => (string)fake()->numberBetween(1000, 3000),
             'start_date' => fake()->dateTimeBetween('now', '+30 days'),
             'guest_name' => fake()->name(),
             'guest_email' => fake()->safeEmail(),
             'person_count' => fake()->numberBetween(1, 4),
             'status_id' => fake()->numberBetween(1, 3),
+            'golf_course_name' => fake()->name(),
+            'golf_course_image_url1' => fake()->imageUrl(),
+            'golf_course_image_url2' => fake()->imageUrl(),
+            'golf_course_image_url3' => fake()->imageUrl(),
+            'golf_course_image_url4' => fake()->imageUrl(),
+            'golf_course_image_url5' => fake()->imageUrl(),
             'created_at' => fake()->dateTimeBetween('-1 month', 'now'),
             'updated_at' => function (array $attributes) {
                 return $attributes['created_at'];

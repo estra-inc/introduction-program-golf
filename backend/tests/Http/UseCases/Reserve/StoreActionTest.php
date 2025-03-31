@@ -26,7 +26,6 @@ class StoreActionTest extends TestCase
     public function 予約を作成できること(): void
     {
         // テストデータ
-        $golfCourseId = 12345;
         $startDate = '2024-03-20';
         $guestName = 'テスト太郎';
         $guestEmail = 'test@example.com';
@@ -40,7 +39,6 @@ class StoreActionTest extends TestCase
 
         // 実行
         ($this->storeAction)(
-            $golfCourseId,
             $startDate,
             $guestName,
             $guestEmail,
@@ -55,7 +53,6 @@ class StoreActionTest extends TestCase
 
         // 検証
         $this->assertDatabaseHas('reserves', [
-            'golf_course_id' => $golfCourseId,
             'start_date' => $startDate,
             'guest_name' => $guestName,
             'guest_email' => $guestEmail,

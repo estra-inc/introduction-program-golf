@@ -10,7 +10,6 @@ use App\Models\Reserve;
 class StoreAction
 {
     public function __invoke(
-        int $golfCourseId,
         string $startDate,
         string $guestName,
         string $guestEmail,
@@ -23,7 +22,6 @@ class StoreAction
         string $golfCourseImageUrl5
     ): void {
         Reserve::create([
-            'golf_course_id' => $golfCourseId,
             'start_date' => $startDate,
             'guest_name' => $guestName,
             'guest_email' => $guestEmail,

@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace Tests\Http\UseCases\Reserve;
 
 use App\Models\Reserve;
-use App\Services\RakutenGora\RakutenGoraServiceInterface;
 use App\UseCases\Reserve\ShowAction;
+use Carbon\Carbon;
 use Tests\TestCase;
-use Tests\Traits\UsesRakutenGoraMockTrait;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 // FIXME: ゴルフ場の予約情報の構造が変わり次第修正
@@ -31,96 +30,37 @@ class ShowActionTest extends TestCase
     {
         // テストデータ作成
         $reserve = Reserve::factory()->create([
-            'golf_course_id' => '1234',
-            'start_date' => '2024-01-01',
-            'name' => 'テストユーザー',
-            'email' => 'test@example.com',
+            'start_date' => Carbon::parse('2024-01-01'),
+            'guest_name' => 'テストユーザー',
+            'guest_email' => 'test@example.com',
             'person_count' => 4,
             'status_id' => 1,
+            'golf_course_name' => 'テストゴルフ場',
+            'golf_course_image_url1' => 'https://example.com/image1.jpg',
+            'golf_course_image_url2' => 'https://example.com/image2.jpg',
+            'golf_course_image_url3' => 'https://example.com/image3.jpg',
+            'golf_course_image_url4' => 'https://example.com/image4.jpg',
+            'golf_course_image_url5' => 'https://example.com/image5.jpg',
+
         ]);
 
         // 実行
         $result = ($this->showAction)($reserve);
 
         // 予約情報の検証
-        $this->assertEquals('1234', $result->golf_course_id);
-        $this->assertEquals('2024-01-01', $result->start_date->format('Y-m-d'));
-        $this->assertEquals('テストユーザー', $result->name);
-        $this->assertEquals('test@example.com', $result->email);
-        $this->assertEquals(4, $result->person_count);
-        $this->assertEquals(1, $result->status_id);
-
-        // ゴルフ場情報の検証
-        $this->assertArrayHasKey('Item', $result->golf_course);
-        $golfCourse = $result->golf_course['Item'];
-        $this->assertEquals('1234', $golfCourse['golfCourseId']);
-        $this->assertArrayHasKey('golfCourseName', $golfCourse);
-        $this->assertArrayHasKey('address', $golfCourse);
+        $this->assertEquals($reserve->start_date, $result->start_date);
+        $this->assertEquals($reserve->guest_name, $result->guest_name);
+        $this->assertEquals($reserve->guest_email, $result->guest_email);
+        $this->assertEquals($reserve->person_count, $result->person_count);
+        $this->assertEquals($reserve->status_id, $result->status_id);
+        $this->assertEquals($reserve->golf_course_name, $result->golf_course_name);
+        $this->assertEquals($reserve->golf_course_image_url1, $result->golf_course_image_url1);
+        $this->assertEquals($reserve->golf_course_image_url2, $result->golf_course_image_url2);
+        $this->assertEquals($reserve->golf_course_image_url3, $result->golf_course_image_url3);
+        $this->assertEquals($reserve->golf_course_image_url4, $result->golf_course_image_url4);
+        $this->assertEquals($reserve->golf_course_image_url5, $result->golf_course_image_url5);
     }
 
-    /**
-     * @test
-     */
-    public function 予約情報に全ての必要な属性が含まれている(): void
-    {
-        // テストデータ作成
-        $reserve = Reserve::factory()->create();
-
-        // 実行
-        $result = ($this->showAction)($reserve);
-
-        // 必須属性の存在確認
-        $requiredAttributes = [
-            'id',
-            'golf_course_id',
-            'start_date',
-            'name',
-            'email',
-            'person_count',
-            'status_id',
-            'created_at',
-            'updated_at',
-            'golf_course',
-        ];
-
-        foreach ($requiredAttributes as $attribute) {
-            $this->assertTrue(isset($result->{$attribute}));
-        }
-    }
-
-    /**
-     * @test
-     */
-    public function ゴルフ場情報に全ての必要な属性が含まれている(): void
-    {
-        // テストデータ作成
-        $reserve = Reserve::factory()->create();
-
-        // 実行
-        $result = ($this->showAction)($reserve);
-
-        // ゴルフ場情報の必須フィールドを検証
-        $requiredFields = [
-            'golfCourseId',
-            'golfCourseName',
-            'golfCourseAbbr',
-            'golfCourseNameKana',
-            'golfCourseCaption',
-            'address',
-            'latitude',
-            'longitude',
-            'highway',
-            'golfCourseDetailUrl',
-            'reserveCalUrl',
-            'ratingUrl',
-            'golfCourseImageUrl',
-            'evaluation',
-        ];
-
-        foreach ($requiredFields as $field) {
-            $this->assertArrayHasKey($field, $result->golf_course['Item']);
-        }
-    }
 
     /**
      * @test

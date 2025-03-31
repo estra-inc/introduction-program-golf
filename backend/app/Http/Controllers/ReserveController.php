@@ -30,7 +30,6 @@ class ReserveController extends Controller
     public function store(StoreRequest $request, StoreAction $action): void
     {
         $action(
-            (int)$request->golf_course_id,
             $request->start_date,
             $request->guest_name,
             $request->guest_email,

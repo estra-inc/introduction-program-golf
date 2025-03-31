@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('reserves', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->ulid('golf_course_id');
             $table->date('start_date');
             $table->string('guest_name');
             $table->string('guest_email');

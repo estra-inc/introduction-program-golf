@@ -11,7 +11,6 @@ class Reserve extends Model
     use HasUlids, HasFactory;
 
     protected $fillable = [
-        'golf_course_id',
         'start_date',
         'guest_name',
         'guest_email',
