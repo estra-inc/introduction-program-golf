@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@heroui/react";
 import { Reserve } from "../types";
+import dayjs from "@/lib/dayjs";
 
 type ReserveListItem = Pick<
   Reserve,
@@ -45,7 +46,9 @@ export default function ReserveListTable({
         {reserves.map((reserve) => (
           <TableRow key={reserve.id} onClick={() => onRowClick(reserve)}>
             <TableCell>{reserve.guest_name}</TableCell>
-            <TableCell>{reserve.start_date}</TableCell>
+            <TableCell>
+              {dayjs(reserve.start_date).format("YYYY年MM月DD日")}
+            </TableCell>
             <TableCell>{reserve.golf_course_name}</TableCell>
             <TableCell>{reserve.person_count}</TableCell>
             <TableCell>{reserve.guest_email}</TableCell>
