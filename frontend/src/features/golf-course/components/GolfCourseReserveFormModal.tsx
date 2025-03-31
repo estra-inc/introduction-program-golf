@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/elements/Button";
-import { Input } from "@/components/elements/forms";
+import { Input, DatePicker } from "@/components/elements/forms";
 import {
   addToast,
   Modal,
@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import yup from "@/lib/yup";
 import createReserve from "@/features/reserve/api/createReserve";
+import dayjs from "@/lib/dayjs";
 
 const reserveSchema = yup.object().shape({
   guestName: yup.string().required(),
@@ -53,6 +54,7 @@ export default function GolfCourseReserveFormModal({
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm<ReserveFormData>({
     resolver: yupResolver(reserveSchema),
     defaultValues: {
@@ -126,12 +128,23 @@ export default function GolfCourseReserveFormModal({
                     errorMessage={errors.personCount?.message}
                     isInvalid={!!errors.personCount}
                   />
-                  <Input
+                  <DatePicker
                     label="予約日"
-                    type="date"
                     {...register("startDate")}
                     errorMessage={errors.startDate?.message}
                     isInvalid={!!errors.startDate}
+                    onChange={(value) => {
+                      if (value) {
+                        setValue(
+                          "startDate",
+                          dayjs(
+                            `${value.year}-${value.month}-${value.day}`
+                          ).format("YYYY-MM-DD")
+                        );
+                      } else {
+                        setValue("startDate", "");
+                      }
+                    }}
                   />
                 </div>
               </ModalBody>

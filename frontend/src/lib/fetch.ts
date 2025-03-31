@@ -107,7 +107,6 @@ export async function http<T extends HttpDocument, R = null>(
   } else {
     try {
       // MEMO: responseが存在しない場合, .jsonでエラーが発生するため, try-catchで処理
-      // ステータスコードを明示的に204で返すか検討
       const resolvedResponse = await response.json();
       const data = resolvedResponse.data;
       return data;

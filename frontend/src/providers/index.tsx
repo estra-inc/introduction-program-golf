@@ -6,7 +6,7 @@ import { ToastProvider } from "@heroui/toast";
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
-    <HeroUIProvider>
+    <HeroUIProvider locale="ja">
       <ToastProvider />
       {children}
     </HeroUIProvider>
