@@ -7,9 +7,8 @@ import { redirect } from "next/navigation";
 
 const isServerSide = typeof window === "undefined";
 
-export type HttpOptions<HttpResponse> = {
+export type HttpOptions = {
   callbacks?: {
-    onSuccess?: (data: HttpResponse) => void;
     onError?: (error: Error) => void;
     onAuthError?: () => void;
   };
@@ -25,19 +24,19 @@ export type HttpParams<
   requestBody?: RequestBody;
 };
 
-export type HttpDocument<ResponseBody = null> = {
+export type HttpDocument = {
   params?: HttpParams;
-  options?: HttpOptions<ResponseBody>;
+  options?: HttpOptions;
 };
 
-export async function http<T extends HttpDocument<R>, R = null>(
+export async function http<T extends HttpDocument, R = null>(
   path: string,
   method: string = "GET",
   params?: T["params"],
   options?: T["options"]
 ): Promise<R> {
   const { pathParams, queryParams, requestBody } = params ?? {};
-  const { onSuccess, onError, onAuthError } = options?.callbacks ?? {};
+  const { onError, onAuthError } = options?.callbacks ?? {};
 
   const headers: RequestInit["headers"] = {
     Accept: "application/json",
@@ -106,17 +105,11 @@ export async function http<T extends HttpDocument<R>, R = null>(
       }
     }
   } else {
-    if (response.status === 204) {
-      onSuccess?.(null as R);
-      return null as R;
-    }
-
     try {
       // MEMO: responseが存在しない場合, .jsonでエラーが発生するため, try-catchで処理
       // ステータスコードを明示的に204で返すか検討
       const resolvedResponse = await response.json();
       const data = resolvedResponse.data;
-      onSuccess?.(data);
       return data;
     } catch (error) {
       console.log("Invalid JSON response", error);

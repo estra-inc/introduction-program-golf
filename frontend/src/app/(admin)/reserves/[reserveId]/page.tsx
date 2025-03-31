@@ -10,7 +10,11 @@ export default async function Page({
 }) {
   const reserveId = params.reserveId;
 
-  const reserve = await fetchReserve(Number(reserveId));
+  const reserve = await fetchReserve({
+    pathParams: {
+      reserveId,
+    },
+  });
 
   const sourceImages = [
     reserve.golf_course_image_url1,

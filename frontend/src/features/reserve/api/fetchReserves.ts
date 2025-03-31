@@ -12,7 +12,7 @@ type Reserve = Pick<
   | "golf_course_name"
 >;
 
-type FetchReservesDocument = HttpDocument<Reserve[]> & {
+type FetchReservesDocument = HttpDocument & {
   params: {
     queryParams: {
       page?: number;

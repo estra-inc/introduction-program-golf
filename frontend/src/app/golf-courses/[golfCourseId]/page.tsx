@@ -11,7 +11,11 @@ type PageProps = {
 
 export default async function Page({ params }: PageProps) {
   const { golfCourseId } = params;
-  const golfCourse = await fetchGolfCourse(Number(golfCourseId));
+  const golfCourse = await fetchGolfCourse({
+    pathParams: {
+      golfCourseId,
+    },
+  });
 
   const sourceImages = [
     golfCourse.golfCourseImageUrl1,

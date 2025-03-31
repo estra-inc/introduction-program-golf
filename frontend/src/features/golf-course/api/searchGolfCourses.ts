@@ -16,7 +16,7 @@ type SearchGolfCoursesHttpDocument = {
   params: {
     queryParams: QueryParams;
   };
-} & HttpDocument<ResponseBody>;
+} & HttpDocument;
 
 export const searchGolfCourses = async (
   params?: SearchGolfCoursesHttpDocument["params"],

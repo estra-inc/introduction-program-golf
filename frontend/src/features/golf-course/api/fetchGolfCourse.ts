@@ -1,13 +1,20 @@
 import { http, HttpDocument } from "@/lib/fetch";
 import { GolfCourse } from "../types/GolfCourse";
 
-type FetchGolfCourseDocument = HttpDocument<GolfCourse>;
+type FetchGolfCourseDocument = HttpDocument & {
+  params: {
+    pathParams: {
+      golfCourseId: string;
+    };
+  };
+};
 
 export const fetchGolfCourse = async (
-  golfCourseId: number
+  params?: FetchGolfCourseDocument["params"]
 ): Promise<GolfCourse> => {
   return await http<FetchGolfCourseDocument, GolfCourse>(
-    `/api/golf-courses/${golfCourseId}`,
-    "GET"
+    "/api/golf-courses/:golfCourseId",
+    "GET",
+    params
   );
 };
