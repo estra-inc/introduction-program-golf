@@ -7,23 +7,6 @@ import { redirect } from "next/navigation";
 
 const isServerSide = typeof window === "undefined";
 
-export type HttpOptions = {
-  callbacks?: {
-    onError?: (error: Error) => void;
-    onAuthError?: () => void;
-  };
-};
-
-export type HttpParams<
-  PathParams = Record<string, string>,
-  QueryParams = Record<string, unknown>,
-  RequestBody = Record<string, unknown>
-> = {
-  pathParams?: PathParams;
-  queryParams?: QueryParams;
-  requestBody?: RequestBody;
-};
-
 export type HttpDocument<
   PathParams = Record<string, string>,
   QueryParams = Record<string, unknown>,
@@ -36,7 +19,12 @@ export type HttpDocument<
     requestBody?: RequestBody;
   };
   response: Response;
-  options?: HttpOptions;
+  options?: {
+    callbacks?: {
+      onError?: (error: Error) => void;
+      onAuthError?: () => void;
+    };
+  };
 };
 
 export type HttpResponseDocument = Record<string, unknown>;
@@ -109,6 +97,7 @@ export async function http<T extends HttpDocument>(
         throw new Error("API Error");
       } else {
         const error = new Error("API Error " + errorBody);
+        onError?.(error);
         if (onError !== undefined) {
           onError(error);
         } else {
@@ -117,10 +106,9 @@ export async function http<T extends HttpDocument>(
       }
     }
   } else {
+    // MEMO: responseが存在しない場合, .jsonでエラーが発生するため, try-catchで処理
     try {
-      // MEMO: responseが存在しない場合, .jsonでエラーが発生するため, try-catchで処理
-      const data = await response.json();
-      return data;
+      return await response.json();
     } catch (error) {
       console.log("Invalid JSON response", error);
       return { data: null } as T["response"];
@@ -192,6 +180,9 @@ const replacePathParams = <PathParams extends Record<string, string>>(
   });
 };
 
+/**
+ * エラーを処理する
+ */
 async function handleError() {
   const { addToast } = await import("@heroui/react");
   addToast({
@@ -201,13 +192,22 @@ async function handleError() {
   });
 }
 
-function getQueryString(options: Record<string, unknown>): string {
-  const params = Object.entries(options || {}).reduce((acc, [key, value]) => {
-    if (value !== undefined) {
-      acc[key] = String(value);
-    }
-    return acc;
-  }, {} as Record<string, string>);
+/**
+ * クエリパラメータを文字列に変換する
+ *
+ * @param queryParams - クエリパラメータのオブジェクト
+ * @returns クエリパラメータの文字列
+ */
+function getQueryString(queryParams: Record<string, unknown>): string {
+  const params = Object.entries(queryParams || {}).reduce(
+    (acc, [key, value]) => {
+      if (value !== undefined) {
+        acc[key] = String(value);
+      }
+      return acc;
+    },
+    {} as Record<string, string>
+  );
 
   return params ? `?${new URLSearchParams(params).toString()}` : "";
 }
