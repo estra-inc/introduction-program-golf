@@ -153,7 +153,7 @@ function makeRequestUrl(
 
   // パスパラメータが存在する場合, パスパラメータを置換
   if (Object.keys(pathParams ?? {}).length > 0) {
-    endpoint = replacePathParams(endpoint, pathParams);
+    endpoint = `${baseUrl}${replacePathParams(path, pathParams)}`;
   }
 
   const query = getQueryString(queryParams);

@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import yup from "@/lib/yup";
 import { RESERVE_STATUS } from "@/constants";
 import { Reserve } from "../types";
+import updateReserve from "../api/updateReserve";
 
 const reserveSchema = yup.object().shape({
   statusId: yup.number().required(),
@@ -16,7 +17,7 @@ const reserveSchema = yup.object().shape({
 type ReserveFormData = yup.InferType<typeof reserveSchema>;
 
 type ReserveUpdateFormProps = {
-  reserve: Pick<Reserve, "status">;
+  reserve: Pick<Reserve, "id" | "status">;
 };
 
 export default function ReserveUpdateForm({ reserve }: ReserveUpdateFormProps) {
@@ -24,13 +25,23 @@ export default function ReserveUpdateForm({ reserve }: ReserveUpdateFormProps) {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<ReserveFormData>({
     resolver: yupResolver(reserveSchema),
+    defaultValues: {
+      statusId: reserve.status.id,
+    },
   });
 
-  const onSubmit = (data: ReserveFormData) => {
-    // TODO: 更新処理
-    console.log(data);
+  const onSubmit = async (data: ReserveFormData) => {
+    await updateReserve({
+      pathParams: {
+        reserveId: reserve.id.toString(),
+      },
+      requestBody: {
+        status_id: data.statusId,
+      },
+    });
 
     addToast({
       title: "更新完了",
@@ -48,7 +59,7 @@ export default function ReserveUpdateForm({ reserve }: ReserveUpdateFormProps) {
             errorMessage={errors.statusId?.message}
             isInvalid={!!errors.statusId}
             options={RESERVE_STATUS}
-            selectedKeys={reserve.status.id.toString()}
+            selectedKeys={watch("statusId").toString()}
           />
 
           <Button className="w-full" size="lg" type="submit">
