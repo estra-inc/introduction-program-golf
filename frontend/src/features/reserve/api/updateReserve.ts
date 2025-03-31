@@ -1,15 +1,15 @@
 import { http, HttpDocument } from "@/lib/fetch";
 
-type UpdateReserveDocument = HttpDocument & {
-  params: {
-    pathParams: {
-      reserveId: string;
-    };
-    requestBody: {
-      status_id: number;
-    };
-  };
-};
+type UpdateReserveDocument = HttpDocument<
+  {
+    reserveId: string;
+  },
+  undefined,
+  {
+    status_id: number;
+  },
+  undefined
+>;
 
 export default async function updateReserve(
   params?: UpdateReserveDocument["params"]

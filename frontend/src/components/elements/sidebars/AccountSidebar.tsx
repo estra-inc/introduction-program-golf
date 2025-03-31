@@ -4,7 +4,7 @@ import { AccountType } from "@/types";
 
 export default async function AccountSidebar() {
   let accountType: AccountType = AccountType.GUEST;
-  const data = await fetchMe({
+  const { data } = await fetchMe({
     callbacks: {
       onAuthError: () => {},
     },

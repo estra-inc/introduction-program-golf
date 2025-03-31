@@ -12,21 +12,28 @@ type Reserve = Pick<
   | "golf_course_name"
 >;
 
-type FetchReservesDocument = HttpDocument & {
-  params: {
-    queryParams: {
-      page?: number;
-      limit?: number;
+type FetchReservesDocument = HttpDocument<
+  undefined,
+  {
+    page?: number;
+    limit?: number;
+  },
+  undefined,
+  {
+    data: Reserve[];
+    meta: {
+      current_page: number;
+      from: number;
+      last_page: number;
+      per_page: number;
+      to: number;
+      total: number;
     };
-  };
-};
+  }
+>;
 
 export default async function fetchReserves(
   params?: FetchReservesDocument["params"]
-): Promise<Reserve[]> {
-  return await http<FetchReservesDocument, Reserve[]>(
-    "/api/reserves",
-    "GET",
-    params
-  );
+) {
+  return await http<FetchReservesDocument>("/api/reserves", "GET", params);
 }

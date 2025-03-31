@@ -1,18 +1,19 @@
 import type { Reserve } from "@/features/reserve/types";
 import { http, HttpDocument } from "@/lib/fetch";
 
-type FetchReserveDocument = HttpDocument & {
-  params: {
-    pathParams: {
-      reserveId: string;
-    };
-  };
-};
+type FetchReserveDocument = HttpDocument<
+  {
+    reserveId: string;
+  },
+  undefined,
+  undefined,
+  { data: Reserve }
+>;
 
 export default async function fetchReserve(
   params?: FetchReserveDocument["params"]
-): Promise<Reserve> {
-  return await http<FetchReserveDocument, Reserve>(
+) {
+  return await http<FetchReserveDocument>(
     "/api/reserves/:reserveId",
     "GET",
     params

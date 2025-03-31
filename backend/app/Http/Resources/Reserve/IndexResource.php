@@ -26,19 +26,4 @@ class IndexResource extends ResourceCollection
             ];
         });
     }
-    // TODO: ページネーションの情報を返す
-    // public function with($request)
-    // {
-    //     return [
-    //         'meta' => [
-    //             'current_page' => $this->currentPage(),
-    //             'from' => $this->firstItem(),
-    //             'last_page' => $this->lastPage(),
-    //             'path' => $this->path(),
-    //             'per_page' => $this->perPage(),
-    //             'to' => $this->lastItem(),
-    //             'total' => $this->total(),
-    //         ],
-    //     ];
-    // }
 }

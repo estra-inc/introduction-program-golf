@@ -19,7 +19,7 @@ export default async function Page({
     query.areaCode = 13;
   }
 
-  const data = await searchGolfCourses({ queryParams: query });
+  const { data } = await searchGolfCourses({ queryParams: query });
 
   return (
     <>

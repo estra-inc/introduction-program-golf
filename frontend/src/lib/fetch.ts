@@ -24,17 +24,29 @@ export type HttpParams<
   requestBody?: RequestBody;
 };
 
-export type HttpDocument = {
-  params?: HttpParams;
+export type HttpDocument<
+  PathParams = Record<string, string>,
+  QueryParams = Record<string, unknown>,
+  RequestBody = Record<string, unknown>,
+  Response = unknown
+> = {
+  params: {
+    pathParams?: PathParams;
+    queryParams?: QueryParams;
+    requestBody?: RequestBody;
+  };
+  response: Response;
   options?: HttpOptions;
 };
 
-export async function http<T extends HttpDocument, R = null>(
+export type HttpResponseDocument = Record<string, unknown>;
+
+export async function http<T extends HttpDocument>(
   path: string,
   method: string = "GET",
   params?: T["params"],
   options?: T["options"]
-): Promise<R> {
+): Promise<T["response"]> {
   const { pathParams, queryParams, requestBody } = params ?? {};
   const { onError, onAuthError } = options?.callbacks ?? {};
 
@@ -107,16 +119,15 @@ export async function http<T extends HttpDocument, R = null>(
   } else {
     try {
       // MEMO: responseが存在しない場合, .jsonでエラーが発生するため, try-catchで処理
-      const resolvedResponse = await response.json();
-      const data = resolvedResponse.data;
+      const data = await response.json();
       return data;
     } catch (error) {
       console.log("Invalid JSON response", error);
-      return null as R;
+      return { data: null } as T["response"];
     }
   }
 
-  return null as R;
+  return { data: null } as T["response"];
 }
 
 /**

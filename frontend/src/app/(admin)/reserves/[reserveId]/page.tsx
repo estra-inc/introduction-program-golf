@@ -11,7 +11,7 @@ export default async function Page({
 }) {
   const { reserveId } = await params;
 
-  const reserve = await fetchReserve({
+  const { data: reserve } = await fetchReserve({
     pathParams: {
       reserveId,
     },
