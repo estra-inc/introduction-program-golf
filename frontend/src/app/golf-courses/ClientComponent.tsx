@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import CourseCard from "@/features/golf-course/components/GolfCourseCard";
 import { SearchGolfCourseItem } from "@/features/golf-course/types/SearchGolfCourseItem";
+import { AREA_OPTIONS } from "@/features/golf-course/constants/area";
 
 const searchGolfCourseSchema = yup.object().shape({
   area: yup.number().nullable(),
@@ -35,12 +36,6 @@ export default function ClientComponent({
   query,
   lastPage,
 }: ClientComponentProps) {
-  const options = [
-    { label: "テスト1", key: 1 },
-    { label: "テスト2", key: 2 },
-    { label: "テスト3", key: 3 },
-  ];
-
   const router = useRouter();
 
   const { register, handleSubmit, setValue, getValues, trigger } =
@@ -74,7 +69,7 @@ export default function ClientComponent({
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex items-center gap-4">
-          <Select options={options} label="エリア" {...register("area")} />
+          <Select options={AREA_OPTIONS} label="エリア" {...register("area")} />
           <Input label="キーワード" {...register("keyword")} />
           <Button type="submit" size="lg">
             検索
