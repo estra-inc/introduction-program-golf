@@ -13,8 +13,8 @@ class StoreRequest extends FormRequest
         return [
             'golf_course_id' => 'required|integer|min:1',
             'start_date' => 'required|date|after:today',
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'guest_name' => 'required|string|max:255',
+            'guest_email' => 'required|email|max:255',
             'person_count' => 'required|integer|min:1',
         ];
     }

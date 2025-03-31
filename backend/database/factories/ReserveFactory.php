@@ -29,8 +29,8 @@ class ReserveFactory extends Factory
         return [
             'golf_course_id' => (string)fake()->numberBetween(1000, 3000),
             'start_date' => fake()->dateTimeBetween('now', '+30 days'),
-            'name' => fake()->name(),
-            'email' => fake()->safeEmail(),
+            'guest_name' => fake()->name(),
+            'guest_email' => fake()->safeEmail(),
             'person_count' => fake()->numberBetween(1, 4),
             'status_id' => fake()->numberBetween(1, 3),
             'created_at' => fake()->dateTimeBetween('-1 month', 'now'),

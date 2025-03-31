@@ -15,8 +15,8 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->ulid('golf_course_id');
             $table->date('start_date');
-            $table->string('name');
-            $table->string('email');
+            $table->string('guest_name');
+            $table->string('guest_email');
             $table->unsignedInteger('status_id');
             $table->unsignedInteger('person_count');
             $table->timestamps();

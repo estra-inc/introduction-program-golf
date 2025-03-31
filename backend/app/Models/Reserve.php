@@ -13,8 +13,8 @@ class Reserve extends Model
     protected $fillable = [
         'golf_course_id',
         'start_date',
-        'name',
-        'email',
+        'guest_name',
+        'guest_email',
         'person_count',
         'status_id',
     ];

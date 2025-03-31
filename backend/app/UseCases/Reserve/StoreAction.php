@@ -13,15 +13,15 @@ class StoreAction
     public function __invoke(
         int $golfCourseId,
         string $startDate,
-        string $name,
-        string $email,
+        string $guestName,
+        string $guestEmail,
         int $personCount
     ): void {
         Reserve::create([
             'golf_course_id' => $golfCourseId,
             'start_date' => $startDate,
-            'name' => $name,
-            'email' => $email,
+            'guest_name' => $guestName,
+            'guest_email' => $guestEmail,
             'person_count' => $personCount,
             'status_id' => ReserveStatus::PENDING->value,
         ]);

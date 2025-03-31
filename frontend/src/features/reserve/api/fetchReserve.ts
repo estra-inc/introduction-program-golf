@@ -6,8 +6,8 @@ export default async function fetchReserve(
   return {
     id: 1,
     startDate: "2021-01-01",
-    name: "John Doe",
-    email: "john.doe@example.com",
+    guestName: "John Doe",
+    guestEmail: "john.doe@example.com",
     personCount: 4,
     status: {
       id: 1,

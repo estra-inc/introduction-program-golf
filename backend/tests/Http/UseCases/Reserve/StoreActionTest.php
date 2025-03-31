@@ -28,16 +28,16 @@ class StoreActionTest extends TestCase
         // テストデータ
         $golfCourseId = 12345;
         $startDate = '2024-03-20';
-        $name = 'テスト太郎';
-        $email = 'test@example.com';
+        $guestName = 'テスト太郎';
+        $guestEmail = 'test@example.com';
         $personCount = 4;
 
         // 実行
         ($this->storeAction)(
             $golfCourseId,
             $startDate,
-            $name,
-            $email,
+            $guestName,
+            $guestEmail,
             $personCount
         );
 
@@ -45,8 +45,8 @@ class StoreActionTest extends TestCase
         $this->assertDatabaseHas('reserves', [
             'golf_course_id' => $golfCourseId,
             'start_date' => $startDate,
-            'name' => $name,
-            'email' => $email,
+            'guest_name' => $guestName,
+            'guest_email' => $guestEmail,
             'person_count' => $personCount,
             'status_id' => 1,
         ]);

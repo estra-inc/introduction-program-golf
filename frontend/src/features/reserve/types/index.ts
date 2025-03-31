@@ -1,8 +1,8 @@
 export type Reserve = {
   id: number;
   startDate: string;
-  name: string;
-  email: string;
+  guestName: string;
+  guestEmail: string;
   personCount: number;
   status: {
     id: number;
