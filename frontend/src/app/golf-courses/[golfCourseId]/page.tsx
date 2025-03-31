@@ -48,7 +48,10 @@ export default async function Page({ params }: PageProps) {
               <h2 className="text-md">{golfCourse.golfCourseCaption}</h2>
             </div>
 
-            <GolfCourseReserveFormModal golfCourse={golfCourse} />
+            <GolfCourseReserveFormModal
+              golfCourse={golfCourse}
+              className="mt-auto"
+            />
           </div>
         </div>
 

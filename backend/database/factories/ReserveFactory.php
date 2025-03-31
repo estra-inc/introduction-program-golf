@@ -74,14 +74,4 @@ class ReserveFactory extends Factory
             'start_date' => fake()->dateTimeBetween('-30 days', '-1 day'),
         ]);
     }
-
-    /**
-     * 特定のゴルフ場の予約を生成する状態
-     */
-    public function forGolfCourse(string $golfCourseId): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'golf_course_id' => $golfCourseId,
-        ]);
-    }
 }

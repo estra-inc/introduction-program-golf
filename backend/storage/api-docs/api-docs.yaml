@@ -379,10 +379,6 @@ paths:
             schema:
               type: object
               properties:
-                golf_course_id:
-                  type: integer
-                  description: ゴルフ場ID
-                  example: 30014
                 start_date:
                   type: string
                   description: 開始日

@@ -13,7 +13,6 @@ class ShowResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'golf_course_id' => $this->golf_course_id,
             'start_date' => $this->start_date,
             'guest_name' => $this->guest_name,
             'guest_email' => $this->guest_email,

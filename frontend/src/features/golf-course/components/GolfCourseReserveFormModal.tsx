@@ -40,10 +40,12 @@ type GolfCourseReserveFormModalProps = {
     golfCourseImageUrl4: string;
     golfCourseImageUrl5: string;
   };
+  className?: string;
 };
 
 export default function GolfCourseReserveFormModal({
   golfCourse,
+  className,
 }: GolfCourseReserveFormModalProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
@@ -93,7 +95,9 @@ export default function GolfCourseReserveFormModal({
 
   return (
     <>
-      <Button onPress={onOpen}>予約する</Button>
+      <Button onPress={onOpen} className={className}>
+        予約する
+      </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalContent>
