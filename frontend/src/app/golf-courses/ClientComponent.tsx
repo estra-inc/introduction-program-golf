@@ -9,7 +9,7 @@ import { Button } from "@/components/elements/Button";
 import { Pagination } from "@/components/elements/Pagination";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import CourseCard from "@/features/golf-course/components/GolfCourseCard";
+import GolfCourseCard from "@/features/golf-course/components/GolfCourseCard";
 import { SearchGolfCourseItem } from "@/features/golf-course/types/SearchGolfCourseItem";
 import { AREA_OPTIONS } from "@/features/golf-course/constants/area";
 
@@ -83,7 +83,7 @@ export default function ClientComponent({
             key={golfCourse.golfCourseId}
             href={`golf-courses/${golfCourse.golfCourseId}`}
           >
-            <CourseCard golfCourse={golfCourse} />
+            <GolfCourseCard golfCourse={golfCourse} />
           </Link>
         ))}
       </div>

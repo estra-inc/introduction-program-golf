@@ -12,7 +12,7 @@ type CourseCardProps = {
   >;
 };
 
-export default function CourseCard({ golfCourse }: CourseCardProps) {
+export default function GolfCourseCard({ golfCourse }: CourseCardProps) {
   return (
     <Card isPressable className="w-full">
       <CardBody>
