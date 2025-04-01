@@ -9,6 +9,7 @@ import {
   ModalHeader,
 } from "@heroui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { getLocalTimeZone, today } from "@internationalized/date";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/elements/Button";
@@ -56,6 +57,7 @@ export default function GolfCourseReserveFormModal({
     formState: { errors },
     reset,
     setValue,
+    trigger,
   } = useForm<ReserveFormData>({
     resolver: yupResolver(reserveSchema),
     defaultValues: {
@@ -134,17 +136,19 @@ export default function GolfCourseReserveFormModal({
                     {...register("startDate")}
                     errorMessage={errors.startDate?.message}
                     isInvalid={!!errors.startDate}
+                    minValue={today(getLocalTimeZone())}
                     onChange={(value) => {
-                      if (value) {
+                      if (value === null) {
+                        setValue("startDate", "");
+                      } else {
                         setValue(
                           "startDate",
                           dayjs(
                             `${value.year}-${value.month}-${value.day}`
                           ).format("YYYY-MM-DD")
                         );
-                      } else {
-                        setValue("startDate", "");
                       }
+                      trigger("startDate");
                     }}
                   />
                 </div>

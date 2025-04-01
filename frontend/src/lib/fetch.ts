@@ -101,6 +101,7 @@ export async function http<T extends HttpDocument>(
           onError(error);
         } else {
           handleError();
+          throw error;
         }
       }
     }
