@@ -4,6 +4,14 @@
 
 1. make install
 
+### Rakuten Gora API
+
+[こちら](https://webservice.rakuten.co.jp/guide)からアプリ ID を取得
+`backend/.env`の`RAKUTEN_GORA_APPLICATION_ID=`にアプリ ID を設定
+
+.e.g  
+RAKUTEN_GORA_APPLICATION_ID=1122280314645528641
+
 ## ブランチ戦略
 
 ### ブランチ
