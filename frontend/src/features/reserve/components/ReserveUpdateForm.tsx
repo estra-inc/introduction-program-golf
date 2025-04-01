@@ -28,6 +28,7 @@ export default function ReserveUpdateForm({ reserve }: ReserveUpdateFormProps) {
     handleSubmit,
     formState: { errors },
     watch,
+    setValue,
   } = useForm<ReserveFormData>({
     resolver: yupResolver(reserveSchema),
     defaultValues: {
@@ -51,6 +52,8 @@ export default function ReserveUpdateForm({ reserve }: ReserveUpdateFormProps) {
     });
   };
 
+  console.log(watch("statusId"));
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -61,6 +64,11 @@ export default function ReserveUpdateForm({ reserve }: ReserveUpdateFormProps) {
             errorMessage={errors.statusId?.message}
             isInvalid={!!errors.statusId}
             options={RESERVE_STATUS}
+            onChange={(e) => {
+              if (e.target.value) {
+                setValue("statusId", parseInt(e.target.value));
+              }
+            }}
             selectedKeys={watch("statusId").toString()}
           />
 
