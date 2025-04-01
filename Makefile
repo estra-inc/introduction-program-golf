@@ -2,6 +2,8 @@ install:
 	cp ./backend/.env.example ./backend/.env
 	docker run --rm -u "$(id -u):$(id -g)" -v "$(shell pwd)/backend:/var/www/html" -w /var/www/html laravelsail/php82-composer:latest composer install --ignore-platform-reqs
 	@make up
+	@make backend-setup
+	@make frontend-setup
 up:
 	docker compose up -d
 down:
@@ -34,3 +36,11 @@ cache:
 	./backend/vendor/bin/sail php artisan optimize:clear
 route-list:
 	./backend/vendor/bin/sail php artisan route:list
+backend-setup:
+	cp ./backend/.env.example ./backend/.env
+	./backend/vendor/bin/sail php artisan key:generate
+	./backend/vendor/bin/sail php artisan migrate:fresh --seed
+frontend-setup:
+	cp ./frontend/.env.local.example ./frontend/.env.local
+	cd ./frontend
+	npm install
