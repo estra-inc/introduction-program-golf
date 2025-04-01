@@ -1,5 +1,5 @@
 import Sidebar from "@/components/elements/sidebars/Sidebar";
-import fetchMe from "@/features/auth/components/api/fetchMe";
+import fetchMe from "@/features/auth/api/fetchMe";
 import { AccountType } from "@/types";
 
 export default async function AccountSidebar() {

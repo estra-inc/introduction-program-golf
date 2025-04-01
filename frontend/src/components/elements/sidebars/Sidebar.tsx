@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import logout from "@/features/auth/components/api/logout";
+import logout from "@/features/auth/api/logout";
 
 type SidebarProps = {
   links: {

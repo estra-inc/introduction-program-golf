@@ -7,7 +7,7 @@ import { Button } from "@/components/elements/Button";
 import { Input } from "@/components/elements/forms";
 import yup from "@/lib/yup";
 
-import login from "./api/login";
+import login from "../api/login";
 
 const loginSchema = yup.object().shape({
   email: yup
