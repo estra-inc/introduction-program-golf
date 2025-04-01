@@ -20,11 +20,11 @@ class GolfCourseController extends Controller
     {
         return new IndexResource(
             $action(
-                (int)($request->page ?? 1),
+                (int) ($request->page ?? 1),
                 $request->keyword ?? null,
-                (int)($request->areaCode ?? null),
-                (float)($request->latitude ?? null),
-                (float)($request->longitude ?? null),
+                (int) ($request->areaCode ?? null),
+                (float) ($request->latitude ?? null),
+                (float) ($request->longitude ?? null),
             )
         );
     }
@@ -34,6 +34,6 @@ class GolfCourseController extends Controller
      */
     public function show(string $golfCourseId, ShowAction $action): ShowResource
     {
-        return new ShowResource($action((int)$golfCourseId));
+        return new ShowResource($action((int) $golfCourseId));
     }
 }
