@@ -1,5 +1,6 @@
 import MainTemplate from "@/components/templates/MainTemplate";
 import { searchGolfCourses } from "@/features/golf-course/api/searchGolfCourses";
+
 import ClientComponent from "./ClientComponent";
 
 export default async function Page({

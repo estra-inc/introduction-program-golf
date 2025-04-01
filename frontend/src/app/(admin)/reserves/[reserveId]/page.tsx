@@ -1,5 +1,5 @@
-import MainTemplate from "@/components/templates/MainTemplate";
 import { Image } from "@/components/elements/Image";
+import MainTemplate from "@/components/templates/MainTemplate";
 import fetchReserve from "@/features/reserve/api/fetchReserve";
 import ReserveUpdateForm from "@/features/reserve/components/ReserveUpdateForm";
 import dayjs from "@/lib/dayjs";

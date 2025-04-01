@@ -1,4 +1,5 @@
 import { Card, CardBody, Image } from "@heroui/react";
+
 import { SearchGolfCourseItem } from "../types/SearchGolfCourseItem";
 
 type CourseCardProps = {

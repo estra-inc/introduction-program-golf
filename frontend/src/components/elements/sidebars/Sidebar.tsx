@@ -1,8 +1,9 @@
 "use client";
 
-import logout from "@/features/auth/components/api/logout";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+
+import logout from "@/features/auth/components/api/logout";
 
 type SidebarProps = {
   links: {

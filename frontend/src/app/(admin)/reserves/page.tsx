@@ -1,4 +1,5 @@
 import MainTemplate from "@/components/templates/MainTemplate";
+
 import ClientComponent from "./ClientComponent";
 
 export default async function Page() {

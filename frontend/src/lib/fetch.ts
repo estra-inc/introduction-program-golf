@@ -1,9 +1,10 @@
+import { redirect } from "next/navigation";
+
 import {
   API_BASE_URL,
   NEXT_PUBLIC_API_BASE_URL,
   NEXT_PUBLIC_FRONTEND_URL,
 } from "@/constants/env";
-import { redirect } from "next/navigation";
 
 const isServerSide = typeof window === "undefined";
 

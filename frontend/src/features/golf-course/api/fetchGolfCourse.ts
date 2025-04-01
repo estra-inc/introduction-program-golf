@@ -1,4 +1,5 @@
 import { http, HttpDocument } from "@/lib/fetch";
+
 import { GolfCourse } from "../types/GolfCourse";
 
 type FetchGolfCourseDocument = HttpDocument<
