@@ -52,8 +52,6 @@ export default function ReserveUpdateForm({ reserve }: ReserveUpdateFormProps) {
     });
   };
 
-  console.log(watch("statusId"));
-
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
