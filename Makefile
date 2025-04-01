@@ -44,3 +44,5 @@ frontend-setup:
 	cp ./frontend/.env.local.example ./frontend/.env.local
 	cd ./frontend
 	npm install
+app:
+	docker compose exec laravel.test bash
