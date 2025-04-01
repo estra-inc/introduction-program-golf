@@ -93,12 +93,10 @@ export async function http<T extends HttpDocument>(
       }
     } else {
       // 5xx系のエラーが発生 or 応答がなかった or リクエスト送信前にエラーが発生した場合
-      console.error("API Error:", JSON.parse(errorBody));
       if (isServerSide) {
-        throw new Error("API Error");
+        throw new Error("API Error: " + errorBody);
       } else {
         const error = new Error("API Error " + errorBody);
-        onError?.(error);
         if (onError !== undefined) {
           onError(error);
         } else {

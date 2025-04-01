@@ -46,7 +46,7 @@ export default async function Page({
 
   return (
     <MainTemplate title="予約詳細" subText="reserve detail">
-      <div className="grid grid-cols-2 gap-10">
+      <div className="grid grid-cols-2 gap-10 w-full">
         <div className="col-span-1">
           <Image
             src={reserve.golf_course_image_url1}
@@ -84,14 +84,15 @@ export default async function Page({
       <h2 className="text-2xl font-bold">ゴルフ場画像</h2>
       <div className="flex gap-10 overflow-x-auto">
         {sourceImages.map((image, index) => (
-          <Image
-            key={index}
-            className="object-cover"
-            src={image}
-            alt="ゴルフ場"
-            width={500}
-            height="100%"
-          />
+          <div className="shrink-0" key={index}>
+            <Image
+              className="object-cover w-96"
+              src={image}
+              alt="ゴルフ場"
+              width={400}
+              height="100%"
+            />
+          </div>
         ))}
       </div>
     </MainTemplate>

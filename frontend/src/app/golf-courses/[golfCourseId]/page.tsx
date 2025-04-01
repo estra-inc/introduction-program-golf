@@ -59,14 +59,15 @@ export default async function Page({ params }: PageProps) {
         <h2 className="text-2xl font-bold">ゴルフ場画像</h2>
         <div className="flex gap-10 overflow-x-auto">
           {sourceImages.map((image, index) => (
-            <Image
-              key={index}
-              className="object-cover"
-              src={image}
-              alt="ゴルフ場"
-              width={500}
-              height="100%"
-            />
+            <div className="shrink-0" key={index}>
+              <Image
+                className="object-cover"
+                src={image}
+                alt="ゴルフ場"
+                width={500}
+                height="100%"
+              />
+            </div>
           ))}
         </div>
       </MainTemplate>

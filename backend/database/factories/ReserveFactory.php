@@ -7,6 +7,14 @@ namespace Database\Factories;
 use App\Models\Reserve;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+const GOLF_COURSE_NAMES = [
+    '武蔵野ゴルフクラブ',
+    '東京相武カントリークラブ',
+    '伊豆大島リゾートゴルフクラブ',
+    '赤羽ゴルフ倶楽部',
+    '東京国際ゴルフ倶楽部',
+];
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Reserve>
  */
@@ -32,7 +40,7 @@ class ReserveFactory extends Factory
             'guest_email' => fake()->safeEmail(),
             'person_count' => fake()->numberBetween(1, 4),
             'status_id' => fake()->numberBetween(1, 3),
-            'golf_course_name' => fake()->name(),
+            'golf_course_name' => fake()->randomElement(GOLF_COURSE_NAMES),
             'golf_course_image_url1' => fake()->imageUrl(),
             'golf_course_image_url2' => fake()->imageUrl(),
             'golf_course_image_url3' => fake()->imageUrl(),

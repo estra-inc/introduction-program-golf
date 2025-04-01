@@ -1,4 +1,6 @@
-import { Card, CardBody, Image } from "@heroui/react";
+import { Card, CardBody } from "@heroui/react";
+
+import { Image } from "@/components/elements/Image";
 
 import { SearchGolfCourseItem } from "../types/SearchGolfCourseItem";
 
@@ -21,7 +23,7 @@ export default function GolfCourseCard({ golfCourse }: CourseCardProps) {
           <div className="col-span-1">
             <Image
               alt="ゴルフ場"
-              src={golfCourse.golfCourseImageUrl || "/assets/no-image.jpg"}
+              src={golfCourse.golfCourseImageUrl}
               className="object-cover"
               height={200}
               width="100%"
