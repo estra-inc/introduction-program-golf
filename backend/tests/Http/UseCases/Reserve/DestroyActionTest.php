@@ -6,8 +6,8 @@ namespace Tests\Http\UseCases\Reserve;
 
 use App\Models\Reserve;
 use App\UseCases\Reserve\DestroyAction;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class DestroyActionTest extends TestCase
 {
@@ -18,7 +18,7 @@ class DestroyActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->destroyAction = new DestroyAction();
+        $this->destroyAction = new DestroyAction;
     }
 
     /**

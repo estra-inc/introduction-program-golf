@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 class RakutenGoraService implements RakutenGoraServiceInterface
 {
     private const BASE_ENDPOINT = 'https://app.rakuten.co.jp/services/api/Gora';
+
     private string $applicationId;
 
     public function __construct()
@@ -23,8 +24,8 @@ class RakutenGoraService implements RakutenGoraServiceInterface
         ?float $longitude = null,
     ) {
         // NOTE: いずれかのパラメータが存在しない時はエラー
-        if (!$keyword && !$areaCode && !($latitude && $longitude)) {
-            throw new RequiredParameterMissingException();
+        if (! $keyword && ! $areaCode && ! ($latitude && $longitude)) {
+            throw new RequiredParameterMissingException;
         }
 
         $params = [
@@ -45,8 +46,7 @@ class RakutenGoraService implements RakutenGoraServiceInterface
             $params['longitude'] = $longitude;
         }
 
-
-        $response = Http::get(self::BASE_ENDPOINT . '/GoraGolfCourseSearch/20170623', $params);
+        $response = Http::get(self::BASE_ENDPOINT.'/GoraGolfCourseSearch/20170623', $params);
 
         if (isset($response->json()['error'])) {
             throw new \Exception($response->json()['error_description']);
@@ -62,7 +62,8 @@ class RakutenGoraService implements RakutenGoraServiceInterface
             'golfCourseId' => $golfCourseId,
         ];
 
-        $response = Http::get(self::BASE_ENDPOINT . '/GoraGolfCourseDetail/20170623', $params);
+        $response = Http::get(self::BASE_ENDPOINT.'/GoraGolfCourseDetail/20170623', $params);
+
         return $response->json();
     }
 }

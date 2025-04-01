@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reserve extends Model
 {
-    use HasUlids, HasFactory;
+    use HasFactory, HasUlids;
 
     protected $fillable = [
         'start_date',

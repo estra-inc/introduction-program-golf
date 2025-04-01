@@ -8,12 +8,13 @@ use App\Services\RakutenGora\Exceptions\RequiredParameterMissingException;
 use App\Services\RakutenGora\RakutenGoraService;
 use App\UseCases\GolfCourse\IndexAction;
 use Database\Factories\GolfCourseFactory;
-use Tests\TestCase;
 use Mockery;
+use Tests\TestCase;
 
 class IndexActionTest extends TestCase
 {
     private IndexAction $indexAction;
+
     private RakutenGoraService $rakutenGoraService;
 
     protected function setUp(): void
@@ -39,7 +40,7 @@ class IndexActionTest extends TestCase
                             'golfCourseName' => '富士山に見えるゴルフ場',
                             'address' => '静岡県富士市',
                             'areaCode' => 13,
-                        ])
+                        ]),
                     ],
                     [
                         'Item' => GolfCourseFactory::create([
@@ -47,9 +48,9 @@ class IndexActionTest extends TestCase
                             'golfCourseName' => '富士山第二ゴルフ場',
                             'address' => '神奈川県箱根市',
                             'areaCode' => 14,
-                        ])
-                    ]
-                ]
+                        ]),
+                    ],
+                ],
             ]);
 
         // 実行
@@ -78,14 +79,14 @@ class IndexActionTest extends TestCase
                     [
                         'Item' => GolfCourseFactory::create([
                             'areaCode' => 13,
-                        ])
+                        ]),
                     ],
                     [
                         'Item' => GolfCourseFactory::create([
                             'areaCode' => 13,
-                        ])
-                    ]
-                ]
+                        ]),
+                    ],
+                ],
             ]);
 
         $areaCode = 13; // 東京都
@@ -116,15 +117,15 @@ class IndexActionTest extends TestCase
                         'Item' => GolfCourseFactory::create([
                             'latitude' => 35.681236,
                             'longitude' => 139.767125,
-                        ])
+                        ]),
                     ],
                     [
                         'Item' => GolfCourseFactory::create([
                             'latitude' => 36.681236,
                             'longitude' => 120.767125,
-                        ])
+                        ]),
                     ],
-                ]
+                ],
             ]);
 
         // 実行
@@ -150,7 +151,7 @@ class IndexActionTest extends TestCase
             ->shouldReceive('searchGolfCourses')
             ->with(1, null, null, null, null)
             ->once()
-            ->andThrow(new RequiredParameterMissingException());
+            ->andThrow(new RequiredParameterMissingException);
 
         $this->expectException(RequiredParameterMissingException::class);
 

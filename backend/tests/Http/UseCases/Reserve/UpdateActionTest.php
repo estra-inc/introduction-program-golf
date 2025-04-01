@@ -7,8 +7,8 @@ namespace Tests\Http\UseCases\Reserve;
 use App\Enums\ReserveStatus;
 use App\Models\Reserve;
 use App\UseCases\Reserve\UpdateAction;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UpdateActionTest extends TestCase
 {
@@ -29,12 +29,12 @@ class UpdateActionTest extends TestCase
     {
         // テストデータ作成
         $reserve = Reserve::factory()->create([
-            'status_id' => ReserveStatus::PENDING->value
+            'status_id' => ReserveStatus::PENDING->value,
         ]);
 
         // 実行
         ($this->updateAction)($reserve, [
-            'status_id' => ReserveStatus::CONFIRMED->value
+            'status_id' => ReserveStatus::CONFIRMED->value,
         ]);
 
         // 検証
@@ -47,11 +47,11 @@ class UpdateActionTest extends TestCase
     /**
      * @test
      */
-    public function 無効なステータスIDを指定した場合は例外が発生すること(): void
+    public function 無効なステータス_i_dを指定した場合は例外が発生すること(): void
     {
         // テストデータ作成
         $reserve = Reserve::factory()->create([
-            'status_id' => ReserveStatus::PENDING->value
+            'status_id' => ReserveStatus::PENDING->value,
         ]);
 
         // 検証
@@ -60,18 +60,18 @@ class UpdateActionTest extends TestCase
 
         // 実行
         ($this->updateAction)($reserve, [
-            'status_id' => 999
+            'status_id' => 999,
         ]);
     }
 
     /**
      * @test
      */
-    public function  更新するデータが指定されていない場合は更新されないこと(): void
+    public function 更新するデータが指定されていない場合は更新されないこと(): void
     {
         // テストデータ作成
         $reserve = Reserve::factory()->create([
-            'status_id' => ReserveStatus::PENDING->value
+            'status_id' => ReserveStatus::PENDING->value,
         ]);
 
         // 実行

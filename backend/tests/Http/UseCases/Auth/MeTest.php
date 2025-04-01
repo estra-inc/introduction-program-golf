@@ -6,10 +6,10 @@ namespace Tests\Http\UseCases\Auth;
 
 use App\Models\Admin;
 use App\UseCases\Auth\MeAction;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\UnauthorizedException;
+use Tests\TestCase;
 
 class MeTest extends TestCase
 {
@@ -20,7 +20,7 @@ class MeTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->meAction = new MeAction();
+        $this->meAction = new MeAction;
     }
 
     /**

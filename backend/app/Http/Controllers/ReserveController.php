@@ -21,12 +21,12 @@ class ReserveController extends Controller
     {
         $args = [];
 
-        if(isset($request->page)) {
-            $args['page'] = (int)$request->page;
+        if (isset($request->page)) {
+            $args['page'] = (int) $request->page;
         }
 
-        if(isset($request->limit)) {
-            $args['limit'] = (int)$request->limit;
+        if (isset($request->limit)) {
+            $args['limit'] = (int) $request->limit;
         }
 
         return new IndexResource($action(...$args));
@@ -43,7 +43,7 @@ class ReserveController extends Controller
             $request->start_date,
             $request->guest_name,
             $request->guest_email,
-            (int)$request->person_count,
+            (int) $request->person_count,
             $request->golf_course_name,
             $request->golf_course_image_url1,
             $request->golf_course_image_url2,

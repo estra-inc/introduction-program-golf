@@ -13,6 +13,7 @@ use Tests\TestCase;
 class ShowActionTest extends TestCase
 {
     private ShowAction $showAction;
+
     private RakutenGoraService $rakutenGoraService;
 
     protected function setUp(): void
@@ -35,7 +36,7 @@ class ShowActionTest extends TestCase
             ->shouldReceive('getGolfCourse')
             ->with(1)
             ->andReturn([
-                'Item' => $golfCourse
+                'Item' => $golfCourse,
             ]);
         // 実行
         $result = ($this->showAction)(1);

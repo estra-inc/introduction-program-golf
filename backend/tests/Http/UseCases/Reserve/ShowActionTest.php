@@ -7,8 +7,8 @@ namespace Tests\Http\UseCases\Reserve;
 use App\Models\Reserve;
 use App\UseCases\Reserve\ShowAction;
 use Carbon\Carbon;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 // FIXME: ゴルフ場の予約情報の構造が変わり次第修正
 class ShowActionTest extends TestCase
@@ -20,7 +20,7 @@ class ShowActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->showAction = new ShowAction();
+        $this->showAction = new ShowAction;
     }
 
     /**
@@ -60,7 +60,6 @@ class ShowActionTest extends TestCase
         $this->assertEquals($reserve->golf_course_image_url4, $result->golf_course_image_url4);
         $this->assertEquals($reserve->golf_course_image_url5, $result->golf_course_image_url5);
     }
-
 
     /**
      * @test

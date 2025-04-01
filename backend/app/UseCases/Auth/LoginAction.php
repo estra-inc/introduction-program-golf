@@ -11,8 +11,7 @@ class LoginAction
     public function __invoke(
         string $email,
         string $password,
-    ): void
-    {
+    ): void {
         $credentials = [
             'email' => $email,
             'password' => $password,

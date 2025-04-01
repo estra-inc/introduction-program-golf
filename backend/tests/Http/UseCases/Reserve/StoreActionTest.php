@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\Http\UseCases\Reserve;
 
 use App\UseCases\Reserve\StoreAction;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class StoreActionTest extends TestCase
 {
@@ -17,7 +17,7 @@ class StoreActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->storeAction = new StoreAction();
+        $this->storeAction = new StoreAction;
     }
 
     /**

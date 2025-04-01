@@ -14,7 +14,7 @@ class MeAction
     {
         $admin = Auth::guard('admin')->user();
 
-        if (!$admin) {
+        if (! $admin) {
             throw new UnauthorizedException('ログインしていません');
         }
 

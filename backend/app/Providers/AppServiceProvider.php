@@ -2,13 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Services\RakutenGora\RakutenGoraServiceInterface;
 use App\Services\RakutenGora\RakutenGoraService;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Foundation\Application;
+use App\Services\RakutenGora\RakutenGoraServiceInterface;
 use App\Session\CustomDatabaseSessionHandler;
-use Laravel\Sanctum\Sanctum;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {

@@ -12,8 +12,7 @@ class IndexAction
     public function __invoke(
         int $page = 1,
         int $limit = 50,
-    ): LengthAwarePaginator
-    {
+    ): LengthAwarePaginator {
         return Reserve::query()
             ->orderBy('created_at', 'desc')
             ->paginate(

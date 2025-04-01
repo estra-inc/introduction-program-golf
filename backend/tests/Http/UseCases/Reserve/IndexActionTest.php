@@ -6,8 +6,8 @@ namespace Tests\Http\UseCases\Reserve;
 
 use App\Models\Reserve;
 use App\UseCases\Reserve\IndexAction;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class IndexActionTest extends TestCase
 {
@@ -18,7 +18,7 @@ class IndexActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->indexAction = new IndexAction();
+        $this->indexAction = new IndexAction;
     }
 
     /**
@@ -57,13 +57,13 @@ class IndexActionTest extends TestCase
     {
         // テストデータ作成
         $oldReserve = Reserve::factory()->create([
-            'created_at' => now()->subDays(2)
+            'created_at' => now()->subDays(2),
         ]);
         $newReserve = Reserve::factory()->create([
-            'created_at' => now()->subDay()
+            'created_at' => now()->subDay(),
         ]);
         $latestReserve = Reserve::factory()->create([
-            'created_at' => now()
+            'created_at' => now(),
         ]);
 
         // 実行
