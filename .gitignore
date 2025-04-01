@@ -21,3 +21,6 @@ composer.phar
 
 # AWS credentials and config files (if applicable)
 .aws
+
+# Node modules
+node_modules
