@@ -26,7 +26,7 @@ class StoreAction
             'guest_name' => $guestName,
             'guest_email' => $guestEmail,
             'person_count' => $personCount,
-            'status_id' => ReserveStatus::PENDING->value,
+            'status_id' => ReserveStatus::REQUESTED->value,
             'golf_course_name' => $golfCourseName,
             'golf_course_image_url1' => $golfCourseImageUrl1,
             'golf_course_image_url2' => $golfCourseImageUrl2,

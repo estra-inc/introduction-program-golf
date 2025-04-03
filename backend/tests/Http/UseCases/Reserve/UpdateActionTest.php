@@ -29,7 +29,7 @@ class UpdateActionTest extends TestCase
     {
         // テストデータ作成
         $reserve = Reserve::factory()->create([
-            'status_id' => ReserveStatus::PENDING->value,
+            'status_id' => ReserveStatus::REQUESTED->value,
         ]);
 
         // 実行
@@ -51,7 +51,7 @@ class UpdateActionTest extends TestCase
     {
         // テストデータ作成
         $reserve = Reserve::factory()->create([
-            'status_id' => ReserveStatus::PENDING->value,
+            'status_id' => ReserveStatus::REQUESTED->value,
         ]);
 
         // 検証
@@ -71,7 +71,7 @@ class UpdateActionTest extends TestCase
     {
         // テストデータ作成
         $reserve = Reserve::factory()->create([
-            'status_id' => ReserveStatus::PENDING->value,
+            'status_id' => ReserveStatus::REQUESTED->value,
         ]);
 
         // 実行
@@ -79,7 +79,7 @@ class UpdateActionTest extends TestCase
 
         // 検証
         $this->assertEquals(
-            ReserveStatus::PENDING->value,
+            ReserveStatus::REQUESTED->value,
             $reserve->fresh()->status_id
         );
     }

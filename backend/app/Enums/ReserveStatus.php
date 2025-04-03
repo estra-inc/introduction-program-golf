@@ -8,15 +8,15 @@ use Illuminate\Support\Collection;
 
 enum ReserveStatus: int
 {
-    case PENDING = 1;
+    case REQUESTED = 1;
     case CONFIRMED = 2;
     case CANCELLED = 3;
 
     public static function getLabel(int $value): string
     {
         return match ($value) {
-            1 => '未確認',
-            2 => '確認済み',
+            1 => 'リクエスト中',
+            2 => '承諾済み',
             3 => 'キャンセル',
             default => throw new \InvalidArgumentException("Invalid value: {$value}")
         };
