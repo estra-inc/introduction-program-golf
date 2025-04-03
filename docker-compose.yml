@@ -12,11 +12,11 @@ services:
 
   laravel.test:
     build:
-      context: ./backend/vendor/laravel/sail/runtimes/8.2 #8.1に修正
+      context: ./backend/vendor/laravel/sail/runtimes/8.2
       dockerfile: Dockerfile
       args:
         WWWGROUP: 1000
-    image: sail-8.2/app #8.1に修正
+    image: sail-8.2/app
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
