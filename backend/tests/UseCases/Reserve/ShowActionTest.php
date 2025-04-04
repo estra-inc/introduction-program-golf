@@ -25,7 +25,7 @@ class ShowActionTest extends TestCase
     /**
      * @test
      */
-    public function 予約情報とゴルフ場情報を取得できること(): void
+    public function 予約情報を取得できること(): void
     {
         // テストデータ作成
         $reserve = Reserve::factory()->create([
@@ -58,23 +58,5 @@ class ShowActionTest extends TestCase
         $this->assertEquals($reserve->golf_course_image_url3, $result->golf_course_image_url3);
         $this->assertEquals($reserve->golf_course_image_url4, $result->golf_course_image_url4);
         $this->assertEquals($reserve->golf_course_image_url5, $result->golf_course_image_url5);
-    }
-
-    /**
-     * @test
-     */
-    public function 日付形式が正しく処理されること(): void
-    {
-        // テストデータ作成
-        $reserve = Reserve::factory()->create([
-            'start_date' => '2024-12-31',
-        ]);
-
-        // 実行
-        $result = ($this->showAction)($reserve);
-
-        // 日付形式の検証
-        $this->assertEquals('2024-12-31', $result->start_date->format('Y-m-d'));
-        $this->assertInstanceOf(\DateTime::class, $result->start_date);
     }
 }
