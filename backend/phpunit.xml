@@ -5,8 +5,8 @@
          colors="true"
 >
     <testsuites>
-        <testsuite name="Http">
-            <directory>tests/Http</directory>
+        <testsuite name="UseCases">
+            <directory>tests/UseCases</directory>
         </testsuite>
     </testsuites>
     <source>
