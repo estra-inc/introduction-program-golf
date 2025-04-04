@@ -47,7 +47,7 @@ class UpdateActionTest extends TestCase
     /**
      * @test
      */
-    public function 無効なステータス_i_dを指定した場合は例外が発生すること(): void
+    public function 無効なstatus_idを指定した場合は例外が発生すること(): void
     {
         // テストデータ作成
         $reserve = Reserve::factory()->create([
