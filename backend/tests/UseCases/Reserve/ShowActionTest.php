@@ -10,7 +10,6 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-// FIXME: ゴルフ場の予約情報の構造が変わり次第修正
 class ShowActionTest extends TestCase
 {
     use RefreshDatabase;
