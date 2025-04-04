@@ -26,7 +26,7 @@ class ShowActionTest extends TestCase
     /**
      * @test
      */
-    public function 予約情報とゴルフ場情報を取得できる(): void
+    public function 予約情報とゴルフ場情報を取得できること(): void
     {
         // テストデータ作成
         $reserve = Reserve::factory()->create([
@@ -64,7 +64,7 @@ class ShowActionTest extends TestCase
     /**
      * @test
      */
-    public function 日付形式が正しく処理される(): void
+    public function 日付形式が正しく処理されること(): void
     {
         // テストデータ作成
         $reserve = Reserve::factory()->create([

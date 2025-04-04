@@ -24,7 +24,7 @@ class IndexActionTest extends TestCase
     /**
      * @test
      */
-    public function 予約一覧を取得できる(): void
+    public function 予約一覧を取得できること(): void
     {
         // テストデータ作成
         Reserve::factory()->count(3)->create();
@@ -40,7 +40,7 @@ class IndexActionTest extends TestCase
     /**
      * @test
      */
-    public function 予約が存在しない場合は空の結果が返る(): void
+    public function 予約が存在しない場合は空の結果が返ること(): void
     {
         // 実行
         $result = ($this->indexAction)(1, 10);
@@ -53,7 +53,7 @@ class IndexActionTest extends TestCase
     /**
      * @test
      */
-    public function 予約データが作成日時の降順でソートされている(): void
+    public function 予約データが作成日時の降順でソートされていること(): void
     {
         // テストデータ作成
         $oldReserve = Reserve::factory()->create([
