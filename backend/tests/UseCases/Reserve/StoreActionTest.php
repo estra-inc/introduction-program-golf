@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Http\UseCases\Reserve;
 
+use App\Enums\ReserveStatus;
 use App\UseCases\Reserve\StoreAction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -57,7 +58,7 @@ class StoreActionTest extends TestCase
             'guest_name' => $guestName,
             'guest_email' => $guestEmail,
             'person_count' => $personCount,
-            'status_id' => 1,
+            'status_id' => ReserveStatus::REQUESTED->value,
             'golf_course_name' => $golfCourseName,
             'golf_course_image_url1' => $golfCourseImageUrl1,
             'golf_course_image_url2' => $golfCourseImageUrl2,
