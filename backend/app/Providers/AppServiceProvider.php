@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\RakutenGora\RakutenGoraService;
+use App\Services\RakutenGora\RakutenGoraServiceInterface;
 use App\Session\CustomDatabaseSessionHandler;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Session;
@@ -22,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->app->bind(RakutenGoraServiceInterface::class, RakutenGoraService::class);
+
         Session::extend('database', function (Application $app) {
             $connection = $app->make('db')->connection();
             $table = config('session.table');
