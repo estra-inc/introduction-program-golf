@@ -24,7 +24,7 @@ export default async function Page({
 
   return (
     <>
-      <MainTemplate title="ゴルフ場 検索" subText="search golf courses">
+      <MainTemplate title="ゴルフ場 検索" subTitle="search golf courses">
         <ClientComponent
           golfCourses={data.Items}
           query={query}

@@ -27,7 +27,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <MainTemplate title="ゴルフ場 詳細" subText="golf course detail">
+      <MainTemplate title="ゴルフ場 詳細" subTitle="golf course detail">
         <div className="grid grid-cols-2 gap-10">
           <div className="col-span-1">
             <Image

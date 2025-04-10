@@ -1,19 +1,19 @@
-import TitleWithSubText from "@/components/elements/TitleWithSubText";
+import TitleWithSubTitle from "@/components/elements/TitleWithSubTitle";
 
 type MainTemplateProps = {
   title: string;
-  subText: string;
+  subTitle: string;
   children: React.ReactNode;
 };
 
 export default function MainTemplate({
   title,
-  subText,
+  subTitle,
   children,
 }: MainTemplateProps) {
   return (
     <div className="flex flex-col gap-12">
-      <TitleWithSubText title={title} subText={subText} />
+      <TitleWithSubTitle title={title} subTitle={subTitle} />
       {children}
     </div>
   );

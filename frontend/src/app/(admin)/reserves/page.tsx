@@ -5,7 +5,7 @@ import ClientComponent from "./ClientComponent";
 export default async function Page() {
   return (
     <>
-      <MainTemplate title="予約一覧" subText="reserve list">
+      <MainTemplate title="予約一覧" subTitle="reserve list">
         <ClientComponent />
       </MainTemplate>
     </>

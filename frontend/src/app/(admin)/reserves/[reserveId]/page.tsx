@@ -45,7 +45,7 @@ export default async function Page({
   ];
 
   return (
-    <MainTemplate title="予約詳細" subText="reserve detail">
+    <MainTemplate title="予約詳細" subTitle="reserve detail">
       <div className="grid grid-cols-2 gap-10 w-full">
         <div className="col-span-1">
           <Image
