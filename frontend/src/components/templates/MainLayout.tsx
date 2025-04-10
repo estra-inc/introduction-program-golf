@@ -1,6 +1,6 @@
 import AccountSidebar from "../elements/sidebars/AccountSidebar";
 
-export default function BaseLayout({
+export default function MainLayout({
   children,
 }: {
   children: React.ReactNode;
