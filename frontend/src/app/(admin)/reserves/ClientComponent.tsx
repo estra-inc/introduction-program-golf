@@ -8,13 +8,11 @@ export default function ClientComponent() {
   const router = useRouter();
 
   return (
-    <>
-      <ReserveListTable
-        className="max-h-[calc(100vh-16rem)]"
-        onRowClick={(reserve) => {
-          router.push(`/reserves/${reserve.id}`);
-        }}
-      />
-    </>
+    <ReserveListTable
+      className="max-h-[calc(100vh-16rem)]"
+      onRowClick={(reserve) => {
+        router.push(`/reserves/${reserve.id}`);
+      }}
+    />
   );
 }

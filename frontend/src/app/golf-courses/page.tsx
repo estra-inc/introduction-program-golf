@@ -1,7 +1,7 @@
 import MainTemplate from "@/components/templates/MainTemplate";
 import { searchGolfCourses } from "@/features/golf-course/api/searchGolfCourses";
 
-import ClientComponent from "./ClientComponent";
+import Client from "./Client";
 
 export default async function Page({
   searchParams,
@@ -25,7 +25,7 @@ export default async function Page({
   return (
     <>
       <MainTemplate title="ゴルフ場 検索" subTitle="search golf courses">
-        <ClientComponent
+        <Client
           golfCourses={data.Items}
           query={query}
           lastPage={data.pageCount}

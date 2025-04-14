@@ -20,7 +20,7 @@ const searchGolfCourseSchema = yup.object().shape({
   page: yup.number().nullable(),
 });
 
-type ClientComponentProps = {
+type Props = {
   query: {
     area?: number;
     keyword?: string;
@@ -32,11 +32,7 @@ type ClientComponentProps = {
 
 type SearchGolfCourseFormData = yup.InferType<typeof searchGolfCourseSchema>;
 
-export default function ClientComponent({
-  golfCourses,
-  query,
-  lastPage,
-}: ClientComponentProps) {
+export default function Client({ golfCourses, query, lastPage }: Props) {
   const router = useRouter();
 
   const { register, handleSubmit, setValue, getValues, trigger } =
