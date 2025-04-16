@@ -14,14 +14,8 @@ export default function Error({
   const { isOpen, onOpen } = useDisclosure();
 
   useEffect(() => {
-    // 認証エラーでない場合のみ、ログを出力してエラー画面を表示する
-    if (error.digest !== "AUTH_ERROR") {
-      console.error(error);
-      onOpen();
-      return;
-    }
-
-    return location.replace("/login");
+    console.error(error);
+    onOpen();
   }, [error, onOpen]);
 
   return (
