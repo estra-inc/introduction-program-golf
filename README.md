@@ -90,7 +90,7 @@ NEXT_PUBLIC_FRONTEND_URL=http://localhost:3000
 
 ### Rakuten Gora API
 
-[こちら](https://webservice.rakuten.co.jp/guide)からアプリ ID を取得
+[こちら](https://webservice.rakuten.co.jp/guide)からアプリ ID を取得  
 `backend/.env`の`RAKUTEN_GORA_APPLICATION_ID=`にアプリ ID を設定
 
 例
@@ -115,7 +115,7 @@ NEXT_PUBLIC_FRONTEND_URL=http://localhost:3000
 1. make app
 2. php artisan reserve:remind
 
-※`reserves.start_date===1` 且つ `reserves.status_id === 2` である必要があります
+※`reserves.start_date === 実行日の翌日` 且つ `reserves.status_id === 2` である必要があります
 
 ## 開発コマンド
 
