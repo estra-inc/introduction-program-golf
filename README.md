@@ -26,11 +26,9 @@ RAKUTEN_GORA_APPLICATION_ID=1122280314645528641
 - 予約作成
 - 予約リマインド
 
-### 予約リンマインド実行
+### 予約リンマインド実行方法
 
 1. make app
 2. php artisan reserve:remind
 
 ※`reserves.start_date===1` 且つ `reserves.status_id === 2` である必要があります
-
-テスト
