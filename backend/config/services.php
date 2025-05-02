@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // 追記
+    'rakuten_gora' => [
+        'application_id' => env('RAKUTEN_GORA_APPLICATION_ID'),
+    ],
 ];
