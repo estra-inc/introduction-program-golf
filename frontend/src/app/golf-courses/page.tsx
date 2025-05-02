@@ -1,0 +1,36 @@
+import MainTemplate from "@/components/templates/MainTemplate";
+import { searchGolfCourses } from "@/features/golf-course/api/searchGolfCourses";
+
+import Client from "./Client";
+
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const { area, keyword, page } = await searchParams;
+
+  const query = {
+    page: typeof page === "string" ? Number(page) : 1,
+    areaCode: typeof area === "string" ? Number(area) : undefined,
+    keyword: typeof keyword === "string" ? keyword : undefined,
+  };
+
+  if (!query.areaCode && !query.keyword) {
+    query.areaCode = 13;
+  }
+
+  const { data } = await searchGolfCourses({ queryParams: query });
+
+  return (
+    <>
+      <MainTemplate title="ゴルフ場 検索" subTitle="search golf courses">
+        <Client
+          golfCourses={data.Items}
+          query={query}
+          lastPage={data.pageCount}
+        />
+      </MainTemplate>
+    </>
+  );
+}
